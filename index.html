@@ -54,12 +54,12 @@
     font-weight:700;
     font-size:1.15rem;
     letter-spacing:-0.01em;
-    display:flex;align-items:center;gap:10px;
+    display:flex;align-items:center;gap:12px;
   }
-  .logo-mark{
-    width:10px;height:10px;border-radius:2px;
-    background:var(--signal);
-    box-shadow:0 0 0 3px rgba(53,208,160,0.15);
+  .logo img{
+    height:36px;
+    width:auto;
+    object-fit:contain;
   }
   .navlinks{display:flex;gap:36px;font-size:0.92rem;color:var(--muted);}
   .navlinks a{transition:color .2s ease;}
@@ -111,7 +111,7 @@
     display:grid;
     grid-template-columns:1.1fr 0.9fr;
     gap:56px;
-    align-items:start;
+    align-items:center;
   }
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;}
@@ -156,53 +156,40 @@
   }
   .btn-ghost:hover, .btn-ghost:focus-visible{border-color:var(--muted);}
 
-  /* console signature */
-  .console{
+  /* ---------- CASE STUDIES CARD ---------- */
+  .case-studies-card{
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:8px;
-    overflow:hidden;
+    padding:32px 28px;
     box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    transition:border-color .3s ease, transform .3s ease;
   }
-  .console-bar{
-    display:flex;gap:6px;
-    padding:12px 14px;
-    border-bottom:1px solid var(--line);
-    background:var(--paper-2);
+  .case-studies-card:hover{
+    border-color:var(--signal);
+    transform:translateY(-2px);
   }
-  .console-bar span{
-    width:9px;height:9px;border-radius:50%;
-    background:var(--line);
-  }
-  .console-body{
-    padding:22px 20px 24px;
+  .card-tag{
     font-family:var(--mono);
-    font-size:0.82rem;
-    min-height:210px;
+    font-size:0.78rem;
+    color:var(--signal);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
   }
-  .console-body .kw{color:#7BA7FF;}
-  .console-body .fn{color:var(--amber);}
-  .console-body .str{color:var(--signal);}
-  .console-body .com{color:var(--muted);}
-  .console-line{white-space:pre;}
-  .cursor{
-    display:inline-block;width:7px;height:14px;
-    background:var(--signal);
-    vertical-align:middle;
-    animation:blink 1s steps(1) infinite;
+  .card-title{
+    font-family:var(--display);
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--text);
   }
-  @keyframes blink{50%{opacity:0;}}
-  .console-results{
-    margin-top:18px;
-    padding-top:16px;
-    border-top:1px dashed var(--line);
-    opacity:0;
-    transform:translateY(6px);
-    transition:opacity .5s ease, transform .5s ease;
+  .card-desc{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.6;
   }
-  .console-results.show{opacity:1;transform:none;}
-  .console-row{display:flex;justify-content:space-between;padding:4px 0;color:var(--muted);}
-  .console-row b{color:var(--text);font-weight:500;}
 
   /* ---------- STATS BAND ---------- */
   .stats{
@@ -412,11 +399,15 @@
 
 <header>
   <nav class="wrap">
-    <div class="logo"><span class="logo-mark"></span>Schwartz Media</div>
+    <div class="logo">
+      <img src="logo.png" alt="Schwartz Media Logo">
+      Schwartz Media
+    </div>
     <div class="navlinks">
       <a href="#services">Services</a>
       <a href="#track-record">Track Record</a>
       <a href="#credentials">Credentials</a>
+      <a href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="#contact">Contact</a>
     </div>
     <a class="nav-cta" href="mailto:ethanjosephschwartz@gmail.com">Start a project</a>
@@ -431,21 +422,19 @@
       <p class="hero-sub">Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:ethanjosephschwartz@gmail.com">Start a project</a>
-        <a class="btn btn-ghost" href="#track-record">View track record</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">Connect on LinkedIn</a>
       </div>
     </div>
 
-    <div class="console">
-      <div class="console-bar"><span></span><span></span><span></span></div>
-      <div class="console-body">
-        <div id="typedQuery"></div>
-        <div class="console-results" id="consoleResults">
-          <div class="console-row"><span>managed_spend</span><b>$50M+ / mo</b></div>
-          <div class="console-row"><span>reporting_lag_delta</span><b>&minus;50%</b></div>
-          <div class="console-row"><span>roas_yoy</span><b>+20%</b></div>
-        </div>
+    <!-- Case Studies Redirect Card -->
+    <a href="#track-record" class="case-studies-card">
+      <div class="card-tag">Featured Work</div>
+      <div class="card-title">Explore Case Studies &amp; Track Record &rarr;</div>
+      <div class="card-desc">See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets.</div>
+      <div>
+        <span class="btn btn-primary">Visit Case Studies</span>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -603,80 +592,7 @@
 </footer>
 
 <script>
-  // Typewriter for the console query
-  const queryLines = [
-    { text: "-- schwartz_media / attribution.sql", cls: "com" },
-    { text: "SELECT", cls: "kw" },
-    { text: "  SUM(managed_spend)      AS managed_spend,", cls: "" },
-    { text: "  AVG(reporting_lag_delta) AS reporting_lag_delta,", cls: "" },
-    { text: "  AVG(roas_yoy)            AS roas_yoy", cls: "" },
-    { text: "FROM " , cls: "kw", inline: true },
-    { text: "schwartz_media.engagements;", cls: "str", append:true }
-  ];
-
-  const target = document.getElementById("typedQuery");
-  const resultsEl = document.getElementById("consoleResults");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function renderStatic(){
-    target.innerHTML =
-      '<div class="console-line com">-- schwartz_media / attribution.sql</div>' +
-      '<div class="console-line"><span class="kw">SELECT</span></div>' +
-      '<div class="console-line">  SUM(managed_spend)       AS managed_spend,</div>' +
-      '<div class="console-line">  AVG(reporting_lag_delta) AS reporting_lag_delta,</div>' +
-      '<div class="console-line">  AVG(roas_yoy)             AS roas_yoy</div>' +
-      '<div class="console-line"><span class="kw">FROM</span> <span class="str">schwartz_media.engagements;</span></div>';
-    resultsEl.classList.add("show");
-  }
-
-  if (reduceMotion) {
-    renderStatic();
-  } else {
-    const fullLines = [
-      '-- schwartz_media / attribution.sql',
-      'SELECT',
-      '  SUM(managed_spend)       AS managed_spend,',
-      '  AVG(reporting_lag_delta) AS reporting_lag_delta,',
-      '  AVG(roas_yoy)             AS roas_yoy',
-      'FROM schwartz_media.engagements;'
-    ];
-    let lineIdx = 0, charIdx = 0;
-    let html = "";
-
-    function typeStep(){
-      if (lineIdx >= fullLines.length){
-        target.innerHTML = html.replace(/<span class="cur">.<\/span>/,'') ;
-        setTimeout(() => resultsEl.classList.add("show"), 250);
-        return;
-      }
-      const line = fullLines[lineIdx];
-      let cls = "";
-      if (line.startsWith("--")) cls = "com";
-      else if (line.trim() === "SELECT" || line.startsWith("FROM")) cls = "kw";
-
-      charIdx++;
-      const shown = line.slice(0, charIdx);
-      let rendered = shown;
-      if (cls === "com") rendered = '<span class="com">'+shown+'</span>';
-      if (line.startsWith("FROM")) {
-        rendered = '<span class="kw">FROM</span>' + (charIdx > 4 ? ' <span class="str">'+shown.slice(4)+'</span>' : '');
-      }
-      if (line.trim() === "SELECT") rendered = '<span class="kw">'+shown+'</span>';
-
-      let preview = html + '<div class="console-line">' + rendered + '<span class="cursor"></span></div>';
-      target.innerHTML = preview;
-
-      if (charIdx >= line.length){
-        html += '<div class="console-line">' + rendered + '</div>';
-        lineIdx++;
-        charIdx = 0;
-        setTimeout(typeStep, 120);
-      } else {
-        setTimeout(typeStep, 14);
-      }
-    }
-    typeStep();
-  }
 
   // Count-up stats
   function animateCount(el){
