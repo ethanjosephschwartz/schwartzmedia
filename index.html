@@ -1,1006 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schwartz Media — Performance Data & Media Consultancy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#FAFAFC;
-    --paper:#FFFFFF;
-    --paper-2:#F1F3F6;
-    --line:#E2E8F0;
-    --text:#111827;
-    --muted:#64748B;
-    --signal:#88A033;
-    --signal-light:rgba(136,160,51,0.12);
-    --amber:#D97706;
-    --display: 'Space Grotesk', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'IBM Plex Mono', monospace;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schwartz Media | Performance Marketing & Growth Strategy</title>
+    
+    <!-- Google Translate Script Setup -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #181b21;
+            --bg-card-hover: #21252d;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #27272a;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-  body{
-    background:var(--ink);
-    color:var(--text);
-    font-family:var(--body);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(250,250,252,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-    width:100%;
-  }
-  nav.wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:76px;
-    gap:20px;
-  }
-  .logo{
-    font-family:var(--display);
-    font-weight:700;
-    font-size:1.15rem;
-    letter-spacing:-0.01em;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    white-space:nowrap;
-    flex-shrink:0;
-  }
-  .logo img{
-    height:38px;
-    width:auto;
-    object-fit:contain;
-  }
-  .navlinks{
-    display:flex;
-    gap:24px;
-    font-size:0.9rem;
-    color:var(--muted);
-    align-items:center;
-    margin-left:auto;
-  }
-  .navlinks a{transition:color .2s ease;}
-  .navlinks a:hover, .navlinks a:focus-visible{color:var(--text);}
-  
-  /* Language Switcher UI */
-  .lang-switcher{
-    display:flex;
-    gap:6px;
-    background:var(--paper-2);
-    padding:4px 8px;
-    border-radius:4px;
-    border:1px solid var(--line);
-    font-family:var(--mono);
-    font-size:0.75rem;
-  }
-  .lang-btn{
-    background:none;
-    border:none;
-    color:var(--muted);
-    cursor:pointer;
-    font-weight:500;
-    padding:2px 4px;
-    border-radius:2px;
-    transition:all .2s ease;
-  }
-  .lang-btn.active, .lang-btn:hover{
-    color:var(--text);
-    background:var(--paper);
-    font-weight:700;
-  }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-  .nav-cta{
-    font-family:var(--mono);
-    font-size:0.82rem;
-    padding:9px 18px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    color:var(--text);
-    background:var(--paper);
-    cursor:pointer;
-    white-space:nowrap;
-    flex-shrink:0;
-    transition:border-color .2s ease, background .2s ease;
-  }
-  .nav-cta:hover, .nav-cta:focus-visible{border-color:var(--signal);background:var(--signal-light);}
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-  @media (max-width:860px){.navlinks{display:none;}}
+        /* Navigation & Translate Widget */
+        nav {
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 17, 21, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:96px 0 72px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute;
-    top:-200px;right:-160px;
-    width:520px;height:520px;
-    background:radial-gradient(circle, rgba(136,160,51,0.12) 0%, rgba(136,160,51,0) 70%);
-    pointer-events:none;
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:0.82rem;
-    color:var(--signal);
-    font-weight:600;
-    letter-spacing:0.04em;
-    display:flex;align-items:center;gap:10px;
-    margin-bottom:22px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:18px;height:2px;
-    background:var(--signal);
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:56px;
-    align-items:center;
-  }
-  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
 
-  h1{
-    font-family:var(--display);
-    font-weight:700;
-    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
-    line-height:1.06;
-    letter-spacing:-0.02em;
-    margin-bottom:24px;
-  }
-  h1 em{font-style:normal;color:var(--signal);}
-  .hero-sub{
-    font-size:1.08rem;
-    color:var(--muted);
-    max-width:46ch;
-    margin-bottom:34px;
-  }
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    font-family:var(--mono);
-    font-size:0.86rem;
-    padding:13px 22px;
-    border-radius:4px;
-    display:inline-flex;align-items:center;gap:8px;
-    cursor:pointer;
-    border:none;
-    transition:transform .15s ease, background .2s ease, border-color .2s ease;
-  }
-  .btn-primary{background:var(--signal);color:#FFFFFF;font-weight:600;}
-  .btn-primary:hover, .btn-primary:focus-visible{transform:translateY(-1px);background:#768C2B;}
-  .btn-ghost{border:1px solid var(--line);background:var(--paper);color:var(--text);}
-  .btn-ghost:hover, .btn-ghost:focus-visible{border-color:var(--muted);}
+        .brand-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
 
-  /* ---------- CASE STUDIES CARD ---------- */
-  .case-studies-card{
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:32px 28px;
-    box-shadow:0 10px 30px -10px rgba(0,0,0,0.05);
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
-  }
-  .case-studies-card:hover{
-    border-color:var(--signal);
-    transform:translateY(-2px);
-    box-shadow:0 15px 35px -10px rgba(0,0,0,0.08);
-  }
-  .card-tag{
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--signal);
-    font-weight:600;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-  }
-  .card-title{
-    font-family:var(--display);
-    font-size:1.5rem;
-    font-weight:600;
-    color:var(--text);
-  }
-  .card-desc{color:var(--muted);font-size:0.95rem;line-height:1.6;}
+        .brand-logo span {
+            color: var(--accent);
+        }
 
-  /* ---------- STATS BAND ---------- */
-  .stats{
-    border-bottom:1px solid var(--line);
-    background:var(--paper);
-  }
-  .stats-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    padding:44px 0;
-  }
-  @media (max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:32px 0;}}
-  .stat{padding:0 24px;border-left:1px solid var(--line);}
-  .stat:first-child{border-left:none;}
-  @media (max-width:760px){.stat:nth-child(odd){border-left:none;}}
-  .stat-num{
-    font-family:var(--display);
-    font-size:2.1rem;
-    font-weight:700;
-    color:var(--signal);
-    letter-spacing:-0.01em;
-  }
-  .stat-label{font-size:0.85rem;color:var(--muted);margin-top:6px;max-width:20ch;}
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
 
-  /* ---------- CLIENT ACCOUNTS SECTION ---------- */
-  .clients-section{
-    border-bottom:1px solid var(--line);
-    background:var(--ink);
-    padding:48px 0;
-  }
-  .clients-label{
-    font-family:var(--mono);
-    font-size:0.75rem;
-    color:var(--muted);
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    text-align:center;
-    margin-bottom:24px;
-  }
-  .clients-grid{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:16px 24px;
-  }
-  .client-chip{
-    font-family:var(--display);
-    font-size:1.05rem;
-    font-weight:600;
-    color:var(--text);
-    padding:10px 20px;
-    border:1px solid var(--line);
-    border-radius:6px;
-    background:var(--paper);
-    cursor:pointer;
-    transition:all .2s ease;
-    user-select:none;
-  }
-  .client-chip:hover, .client-chip.active{
-    border-color:var(--signal);
-    background:var(--signal-light);
-    color:var(--signal);
-    transform:translateY(-1px);
-  }
-  
-  .client-detail-card{
-    margin-top:24px;
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:24px 28px;
-    display:none;
-    box-shadow:0 10px 25px -5px rgba(0,0,0,0.04);
-  }
-  .client-detail-card.active{display:block;animation:fadeIn .3s ease;}
-  .client-detail-title{
-    font-family:var(--display);
-    font-size:1.2rem;
-    font-weight:600;
-    color:var(--text);
-    margin-bottom:8px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .client-detail-body{
-    color:var(--muted);
-    font-size:0.95rem;
-    line-height:1.65;
-    max-width:85ch;
-  }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            list-style: none;
+        }
 
-  @keyframes fadeIn{
-    from{opacity:0;transform:translateY(6px);}
-    to{opacity:1;transform:none;}
-  }
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-  /* ---------- SECTION HEADS ---------- */
-  section{padding:96px 0;}
-  .sec-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    margin-bottom:56px;
-    gap:24px;
-    flex-wrap:wrap;
-  }
-  .sec-eyebrow{
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--muted);
-    letter-spacing:0.04em;
-    margin-bottom:10px;
-  }
-  h2{
-    font-family:var(--display);
-    font-size:clamp(1.7rem,3vw,2.3rem);
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
-  .sec-note{max-width:34ch;color:var(--muted);font-size:0.95rem;}
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
 
-  /* ---------- SERVICES / PIPELINE ---------- */
-  .pipeline{border-top:1px solid var(--line);}
-  .stage{
-    display:grid;
-    grid-template-columns:80px 1fr 1fr;
-    gap:24px;
-    padding:32px 0;
-    border-bottom:1px solid var(--line);
-    align-items:start;
-  }
-  @media (max-width:760px){
-    .stage{grid-template-columns:56px 1fr;}
-    .stage .stage-desc{grid-column:2;}
-  }
-  .stage-num{
-    font-family:var(--mono);
-    color:var(--amber);
-    font-size:0.9rem;
-    font-weight:600;
-    padding-top:4px;
-  }
-  .stage-name{font-family:var(--display);font-size:1.25rem;font-weight:600;}
-  .stage-desc{color:var(--muted);font-size:0.95rem;max-width:48ch;}
+        /* Translate Widget Styling */
+        #google_translate_element {
+            display: inline-block;
+        }
 
-  /* ---------- TRACK RECORD ---------- */
-  .track{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .role{
-    display:grid;
-    grid-template-columns:180px 1fr;
-    gap:28px;
-    padding:30px 0;
-    border-top:1px solid var(--line);
-  }
-  .role:first-of-type{border-top:none;}
-  @media (max-width:700px){.role{grid-template-columns:1fr;gap:8px;}}
-  .role-date{font-family:var(--mono);font-size:0.82rem;color:var(--muted);padding-top:3px;}
-  .role-title{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:4px;}
-  .role-org{color:var(--signal);font-size:0.95rem;font-weight:600;margin-bottom:10px;}
-  .role-desc{color:var(--muted);font-size:0.93rem;max-width:62ch;}
-  .role-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
-  .tag{
-    font-family:var(--mono);
-    font-size:0.72rem;
-    padding:4px 9px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    background:var(--paper-2);
-    color:var(--muted);
-  }
+        .goog-te-gadget-simple {
+            background-color: var(--bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            padding: 6px 10px !important;
+            border-radius: 6px !important;
+            font-size: 0.85rem !important;
+        }
 
-  /* ---------- CREDENTIALS ---------- */
-  .creds-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  @media (max-width:700px){.creds-grid{grid-template-columns:repeat(2,1fr);}}
-  .cred{background:var(--paper);padding:26px 22px;}
-  .cred-cat{
-    font-family:var(--mono);
-    font-size:0.72rem;
-    color:var(--amber);
-    font-weight:600;
-    letter-spacing:0.03em;
-    margin-bottom:10px;
-  }
-  .cred-item{font-size:0.92rem;color:var(--text);margin-bottom:4px;}
+        .goog-te-gadget-simple span {
+            color: var(--text-main) !important;
+        }
 
-  /* ---------- FAQ ACCORDION ---------- */
-  .faq-section{border-top:1px solid var(--line);background:var(--paper);}
-  .faq-item{border-bottom:1px solid var(--line);padding:20px 0;}
-  .faq-q{
-    font-family:var(--display);
-    font-size:1.1rem;
-    font-weight:600;
-    cursor:pointer;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .faq-a{
-    margin-top:12px;
-    color:var(--muted);
-    font-size:0.95rem;
-    display:none;
-    max-width:65ch;
-  }
-  .faq-item.active .faq-a{display:block;}
-  .faq-icon{font-family:var(--mono);font-size:1.2rem;color:var(--signal);}
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
 
-  /* ---------- CONTACT ---------- */
-  .contact{
-    background:var(--paper-2);
-    border-top:1px solid var(--line);
-    text-align:left;
-  }
-  .contact-grid{
-    display:grid;
-    grid-template-columns:1.2fr 0.8fr;
-    gap:48px;
-  }
-  @media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
-  .contact h2{margin-bottom:18px;}
-  .contact-copy{color:var(--muted);max-width:46ch;margin-bottom:32px;}
-  .contact-list{display:flex;flex-direction:column;gap:16px;}
-  .contact-row{
-    display:flex;justify-content:space-between;
-    padding:16px 0;
-    border-top:1px solid var(--line);
-    font-family:var(--mono);
-    font-size:0.9rem;
-  }
-  .contact-row:last-child{border-bottom:1px solid var(--line);}
-  .contact-row span:first-child{color:var(--muted);}
-  .contact-row a:hover, .contact-row a:focus-visible{color:var(--signal);}
-  
-  .edu-block{
-    font-size:0.85rem;
-    color:var(--text);
-    text-align:right;
-    max-width:280px;
-    line-height:1.4;
-  }
+        .btn-primary {
+            background-color: var(--accent);
+            color: #000000;
+        }
 
-  footer{
-    border-top:1px solid var(--line);
-    padding:28px 0;
-    display:flex;justify-content:space-between;
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--muted);
-    flex-wrap:wrap;gap:10px;
-  }
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
 
-  /* ---------- MODAL FORM ---------- */
-  .modal-overlay{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:rgba(17,24,39,0.6);
-    backdrop-filter:blur(4px);
-    z-index:100;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-  }
-  .modal-overlay.open{display:flex;}
-  .modal-card{
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:8px;
-    max-width:540px;
-    width:100%;
-    padding:36px;
-    position:relative;
-    box-shadow:0 20px 40px rgba(0,0,0,0.15);
-  }
-  .modal-close{
-    position:absolute;top:18px;right:20px;
-    background:none;border:none;
-    font-size:1.5rem;color:var(--muted);
-    cursor:pointer;
-  }
-  .form-group{margin-bottom:18px;}
-  .form-group label{
-    display:block;
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--text);
-    margin-bottom:6px;
-  }
-  .form-group input, .form-group textarea, .form-group select{
-    width:100%;
-    padding:10px 12px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    font-family:var(--body);
-    font-size:0.92rem;
-    background:var(--ink);
-    color:var(--text);
-  }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus{
-    outline:none;
-    border-color:var(--signal);
-  }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
 
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1;transform:none;}
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.03);
+        }
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
-    html{scroll-behavior:auto;}
-  }
-  :focus-visible{outline:2px solid var(--signal);outline-offset:2px;}
-</style>
+        /* Hero */
+        .hero {
+            padding: 90px 0 70px;
+            text-align: center;
+        }
+
+        .hero-tagline {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto 36px;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(24, 27, 33, 0.5);
+            padding: 36px 0;
+            margin-bottom: 80px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .stat-number span {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Section Commons */
+        .section {
+            padding-bottom: 80px;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Grid Layouts */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 28px;
+            border-radius: 8px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .result-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 28px;
+            border-radius: 8px;
+        }
+
+        .result-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .result-metrics {
+            display: flex;
+            gap: 24px;
+            margin: 16px 0;
+            padding: 12px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metric-val {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .metric-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step-num {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--border-color);
+            margin-bottom: 8px;
+        }
+
+        .process-step h4 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 56px 28px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 28px;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid, .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .results-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .services-grid, .stats-grid, .process-grid { grid-template-columns: 1fr; }
+            .hero-cta { flex-direction: column; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <nav class="wrap">
-    <div class="logo">
-      <img src="logo.png" alt="Schwartz Media Logo">
-      Schwartz Media
-    </div>
-    <div class="navlinks">
-      <a href="#services" data-en="Services" data-es="Servicios" data-fr="Services">Services</a>
-      <a href="#track-record" data-en="Track Record" data-es="Trayectoria" data-fr="Parcours">Track Record</a>
-      <a href="#credentials" data-en="Credentials" data-es="Credenciales" data-fr="Certifications">Credentials</a>
-      <a href="#faq" data-en="FAQ" data-es="Preguntas" data-fr="FAQ">FAQ</a>
-      <a href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="setLanguage('es')">ES</button>
-      <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
-    </div>
-    <button class="nav-cta open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow" data-en="PERFORMANCE DATA &amp; MEDIA CONSULTANCY" data-es="CONSULTORÍA DE DATOS Y MEDIOS" data-fr="CONSEIL EN DONNÉES &amp; MÉDIAS">PERFORMANCE DATA &amp; MEDIA CONSULTANCY</div>
-      <h1 data-en="Full-funnel media, &lt;em&gt;run like a data pipeline.&lt;/em&gt;" data-es="Medios de embudo completo, &lt;em&gt;como un flujo de datos.&lt;/em&gt;" data-fr="Médias full-funnel, &lt;em&gt;gérés comme un flux de données.&lt;/em&gt;">Full-funnel media, <em>run like a data pipeline.</em></h1>
-      <p class="hero-sub" data-en="Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands." data-es="Schwartz Media es la consultora de Ethan Schwartz para marcas que desean tratar su inversión publicitaria como un conjunto de datos: analizado, atribuido y reportado con precisión. Desarrollado tras más de 5 años gestionando más de $50M mensuales." data-fr="Schwartz Media est la pratique d'Ethan Schwartz pour les marques souhaitant traiter leurs dépenses publicitaires comme un jeu de données : analysé, attribué et reporté. Basé sur plus de 5 ans de gestion de plus de 50M$ de budgets mensuels.">Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands.</p>
-      <div class="hero-cta">
-        <button class="btn btn-primary open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener" data-en="Connect on LinkedIn" data-es="Conectar en LinkedIn" data-fr="Se connecter sur LinkedIn">Connect on LinkedIn</a>
-      </div>
-    </div>
-
-    <!-- Case Studies Card -->
-    <a href="#track-record" class="case-studies-card">
-      <div class="card-tag" data-en="Featured Work" data-es="Trabajo Destacado" data-fr="Projets En Vedette">Featured Work</div>
-      <div class="card-title" data-en="Explore Case Studies &amp; Track Record &rarr;" data-es="Explorar Casos de Estudio y Trayectoria &rarr;" data-fr="Explorer les Études de Cas &amp; Parcours &rarr;">Explore Case Studies &amp; Track Record &rarr;</div>
-      <div class="card-desc" data-en="See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets." data-es="Vea cómo la arquitectura de datos, la atribución multitoque y la gestión presupuestaria algorítmica escalaron el ROAS en presupuestos de más de $10M mensuales." data-fr="Découvrez comment l'architecture de données, l'attribution multi-touch et la gestion budgétaire algorithmique ont augmenté le ROAS sur des budgets de plus de 10M$/mois.">See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets.</div>
-      <div>
-        <span class="btn btn-primary" data-en="Visit Case Studies" data-es="Ver Casos de Estudio" data-fr="Voir les Études de Cas">Visit Case Studies</span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- STATS BAND -->
-<div class="stats">
-  <div class="wrap stats-grid">
-    <div class="stat"><div class="stat-num" data-count="50" data-suffix="M+">0</div><div class="stat-label" data-en="Monthly budget under active management" data-es="Presupuesto mensual bajo gestión activa" data-fr="Budget mensuel sous gestion active">Monthly budget under active management</div></div>
-    <div class="stat"><div class="stat-num" data-count="50" data-suffix="%"  data-prefix="&minus;">0</div><div class="stat-label" data-en="Reduction in reporting cycle time" data-es="Reducción en el tiempo de ciclo de informes" data-fr="Réduction du temps del'élaboration des rapports">Reduction in reporting cycle time</div></div>
-    <div class="stat"><div class="stat-num" data-count="20" data-suffix="%" data-prefix="+">0</div><div class="stat-label" data-en="YoY ROAS improvement delivered" data-es="Mejora interanual entregada en ROAS" data-fr="Amélioration du ROAS d'une année sur l'autre">YoY ROAS improvement delivered</div></div>
-    <div class="stat"><div class="stat-num" data-count="15" data-suffix="%" data-prefix="&minus;">0</div><div class="stat-label" data-en="CPL reduction across paid channels" data-es="Reducción de CPL en canales pagados" data-fr="Réduction del'CPL sur les canaux payants">CPL reduction across paid channels</div></div>
-  </div>
-</div>
-
-<!-- CLIENT ACCOUNT EXPERIENCE -->
-<div class="clients-section">
-  <div class="wrap">
-    <div class="clients-label" data-en="Select Client Account Experience &mdash; Click to view details" data-es="Experiencia en Cuentas de Clientes &mdash; Haga clic para ver detalles" data-fr="Expérience Clients Sélectionnée &mdash; Cliquez pour voir les détails">Select Client Account Experience &mdash; Click to view details</div>
-    <div class="clients-grid">
-      <div class="client-chip" data-target="everlane">Everlane</div>
-      <div class="client-chip" data-target="flowers">1-800-Flowers</div>
-      <div class="client-chip" data-target="meta">Meta</div>
-      <div class="client-chip" data-target="alvamed">Alvamed</div>
-      <div class="client-chip" data-target="ametros">Ametros</div>
-      <div class="client-chip" data-target="gravyty">Gravyty</div>
-      <div class="client-chip" data-target="leeco">Lee Co.</div>
-    </div>
-
-    <!-- DETAIL CARDS -->
-    <div class="client-detail-card" id="everlane">
-      <div class="client-detail-title">
-        <span data-en="Everlane &mdash; Paid Search &amp; Social Channel Management" data-es="Everlane &mdash; Gestión de Búsqueda y Redes Pagadas" data-fr="Everlane &mdash; Gestion des Canaux Payants">Everlane &mdash; Paid Search &amp; Social Channel Management</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">DTC / Retail</span>
-      </div>
-      <div class="client-detail-body" data-en="Managed core full-funnel Paid Search and Paid Social execution across Google, Meta, and Pinterest. Optimized audience bidding hierarchies, product feed performance, and creative testing frameworks to deliver profitable customer acquisition and maximize return on ad spend across major promotional periods." data-es="Gestión integral de Búsqueda Pagada y Redes Pagadas en Google, Meta y Pinterest. Optimización de jerarquías de pujas, rendimiento de feeds de productos y pruebas creativas para maximizar el ROAS durante los períodos promocionales clave." data-fr="Gestion complète de la Recherche Payante et des Réseaux Sociaux Payants sur Google, Meta et Pinterest. Optimisation des enchères, des flux de produits et du test de créations pour maximiser le ROAS lors des périodes promotionnelles majeures.">
-        Managed core full-funnel Paid Search and Paid Social execution across Google, Meta, and Pinterest. Optimized audience bidding hierarchies, product feed performance, and creative testing frameworks to deliver profitable customer acquisition and maximize return on ad spend across major promotional periods.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="flowers">
-      <div class="client-detail-title">
-        <span data-en="1-800-Flowers &mdash; Full-Funnel Paid Search &amp; Social Operations" data-es="1-800-Flowers &mdash; Operaciones de Medios Pagados" data-fr="1-800-Flowers &mdash; Opérations Médias Payants">1-800-Flowers &mdash; Full-Funnel Paid Search &amp; Social Operations</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">E-Commerce</span>
-      </div>
-      <div class="client-detail-body" data-en="Spearheaded multi-channel Paid Search and Paid Social campaigns spanning Google, Meta, and Pinterest. Focused on high-velocity seasonal campaigns, dynamic product ads, and strict return-on-ad-spend metrics to drive revenue during peak demand cycles." data-es="Lideró campañas multicanal de Búsqueda y Social Pagado en Google, Meta y Pinterest. Enfocado en campañas estacionales de alta velocidad, anuncios dinámicos de productos y métricas estrictas de ROAS para impulsar ingresos en temporadas pico." data-fr="Direction de campagnes multicanaux sur Google, Meta et Pinterest. Focalisation sur les campagnes saisonnières à forte vélocité, les publicités dynamiques de produits et le respect strict du ROAS pendant les pics de demande.">
-        Spearheaded multi-channel Paid Search and Paid Social campaigns spanning Google, Meta, and Pinterest. Focused on high-velocity seasonal campaigns, dynamic product ads, and strict return-on-ad-spend metrics to drive revenue during peak demand cycles.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="meta">
-      <div class="client-detail-title">
-        <span data-en="Meta &mdash; Reality Labs Hardware &amp; Global ONP Social" data-es="Meta &mdash; Hardware Reality Labs y Redes ONP Globales" data-fr="Meta &mdash; Matériel Reality Labs &amp; Médias Sociaux ONP">Meta &mdash; Reality Labs Hardware &amp; Global ONP Social</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Enterprise Technology</span>
-      </div>
-      <div class="client-detail-body" data-en="Led media strategy and execution for Reality Labs flagship hardware products, including Ray-Ban Meta Smart Glasses, running international campaigns across EMEA. Additionally directed global Organic &amp; Paid (ONP) social campaign architectures across Rest of World (ROW) markets to elevate brand adoption and full-funnel engagement." data-es="Lideró la estrategia de medios para productos clave de Reality Labs, incluidas las gafas Ray-Ban Meta en EMEA. Dirigió arquitecturas de campañas orgánicas y pagadas (ONP) en mercados internacionales para elevar la adopción de marca." data-fr="Gestion de la stratégie média pour les produits phares de Reality Labs, notamment les lunettes Ray-Ban Meta en EMEA. Direction des campagnes d'architectures sociales organiques et payantes (ONP) sur les marchés internationaux.">
-        Led media strategy and execution for Reality Labs flagship hardware products, including Ray-Ban Meta Smart Glasses, running international campaigns across EMEA. Additionally directed global Organic &amp; Paid (ONP) social campaign architectures across Rest of World (ROW) markets to elevate brand adoption and full-funnel engagement.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="alvamed">
-      <div class="client-detail-title">
-        <span data-en="Alvamed &mdash; B2B Lead Generation &amp; Performance Media" data-es="Alvamed &mdash; Generación de Leads B2B" data-fr="Alvamed &mdash; Génération de Leads B2B">Alvamed &mdash; B2B Lead Generation &amp; Performance Media</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Healthcare &amp; Life Sciences</span>
-      </div>
-      <div class="client-detail-body" data-en="Managed specialized B2B performance campaigns across Google and LinkedIn, capturing high-intent medical device consulting queries and driving structured lead pipelines with transparent multi-touch attribution." data-es="Gestión de campañas B2B en Google y LinkedIn para captar consultas de consultoría en dispositivos médicos de alta intención, impulsando embudos de clientes potenciales estructurados con atribución transparente." data-fr="Gestion de campagnes de performance B2B sur Google et LinkedIn pour capter les requêtes à forte intention dans le secteur des dispositifs médicaux, générant des prospects qualifiés avec une attribution transparente.">
-        Managed specialized B2B performance campaigns across Google and LinkedIn, capturing high-intent medical device consulting queries and driving structured lead pipelines with transparent multi-touch attribution.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="ametros">
-      <div class="client-detail-title">
-        <span data-en="Ametros &mdash; Performance Growth &amp; Attribution" data-es="Ametros &mdash; Crecimiento y Atribución" data-fr="Ametros &mdash; Croissance &amp; Attribution">Ametros &mdash; Performance Growth &amp; Attribution</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Financial &amp; Healthcare Tech</span>
-      </div>
-      <div class="client-detail-body" data-en="Executed performance media strategies across search and paid social channels, structuring tracking pipelines and ad group hierarchies that consistently lowered cost-per-lead while maintaining high lead qualification standards." data-es="Ejecutó estrategias de medios de rendimiento en búsqueda y redes pagadas, estructurando canalizaciones de seguimiento e historias de anuncios que redujeron sistemáticamente el costo por lead." data-fr="Exécution de stratégies médias de performance sur les réseaux sociaux et moteurs de recherche, avec des pipelines de suivi qui ont permis de réduire durablement le coût par lead.">
-        Executed performance media strategies across search and paid social channels, structuring tracking pipelines and ad group hierarchies that consistently lowered cost-per-lead while maintaining high lead qualification standards.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="gravyty">
-      <div class="client-detail-title">
-        <span data-en="Gravyty &mdash; B2B Demand Generation" data-es="Gravyty &mdash; Generación de Demanda B2B" data-fr="Gravyty &mdash; Génération de Demande B2B">Gravyty &mdash; B2B Demand Generation</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">SaaS &amp; Higher Ed Tech</span>
-      </div>
-      <div class="client-detail-body" data-en="Architected ABM and demand generation campaigns across LinkedIn and Google Search, connecting platform conversions directly to CRM pipeline value to ensure full alignment between media spend and closed-won revenue." data-es="Diseñó campañas de ABM y generación de demanda en LinkedIn y Google Search, conectando las conversiones de la plataforma directamente al valor del pipeline del CRM." data-fr="Conception de campagnes d'ABM et de génération de demande sur LinkedIn et Google Search, reliant directement les conversions sur plateforme aux opportunités générées dans le CRM.">
-        Architected ABM and demand generation campaigns across LinkedIn and Google Search, connecting platform conversions directly to CRM pipeline value to ensure full alignment between media spend and closed-won revenue.
-      </div>
-    </div>
-
-    <div class="client-detail-card" id="leeco">
-      <div class="client-detail-title">
-        <span data-en="Lee Co. &mdash; Multi-Channel Digital Acquisition" data-es="Lee Co. &mdash; Adquisición Digital Multicanal" data-fr="Lee Co. &mdash; Acquisition Numérique Multicanale">Lee Co. &mdash; Multi-Channel Digital Acquisition</span>
-        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Consumer &amp; Commercial Services</span>
-      </div>
-      <div class="client-detail-body" data-en="Oversee search, social, and targeted programmatic campaigns, streamlining attribution models and optimizing conversion pathways to scale client revenue across competitive regional markets." data-es="Supervisó campañas de búsqueda, redes sociales y programática dirigida, optimizando modelos de atribución y rutas de conversión para escalar ingresos en mercados regionales competitivos." data-fr="Supervision des campagnes sur les moteurs de recherche, réseaux sociaux et programmatique, afin d'optimiser les modèles d'attribution et augmenter les revenus sur des marchés régionaux concurrentiels.">
-        Oversee search, social, and targeted programmatic campaigns, streamlining attribution models and optimizing conversion pathways to scale client revenue across competitive regional markets.
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<section id="services" class="pipeline">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="sec-eyebrow" data-en="HOW AN ENGAGEMENT RUNS" data-es="CÓMO FUNCIONA UN PROYECTO" data-fr="DÉROULEMENT D'UN PROJET">HOW AN ENGAGEMENT RUNS</div>
-        <h2 data-en="Four stages, one source of truth." data-es="Cuatro etapas, una sola fuente de verdad." data-fr="Quatre étapes, une source unique de vérité.">Four stages, one source of truth.</h2>
-      </div>
-      <p class="sec-note" data-en="Every engagement follows the same pipeline &mdash; because media without an audit trail isn't measurable, it's a guess." data-es="Cada proyecto sigue la misma estructura: porque los medios sin seguimiento de auditoría no se pueden medir, solo se adivinan." data-fr="Chaque projet suit le même processus &mdash; car les médias sans piste d'audit ne sont pas mesurables, ce sont des devinettes.">Every engagement follows the same pipeline &mdash; because media without an audit trail isn't measurable, it's a guess.</p>
-    </div>
-
-    <div class="stage reveal">
-      <div class="stage-num">01</div>
-      <div class="stage-name" data-en="Data Architecture" data-es="Arquitectura de Datos" data-fr="Architecture des Données">Data Architecture</div>
-      <div class="stage-desc" data-en="ETL pipelines that merge HubSpot, GA4, and platform APIs (Meta, Google, TikTok, LinkedIn) into a single warehouse &mdash; so every downstream number traces back to one source." data-es="Canalizaciones ETL que unifican HubSpot, GA4 y APIs (Meta, Google, TikTok, LinkedIn) en un solo almacén de datos." data-fr="Pipelines ETL unifiant HubSpot, GA4 et les API plateformes (Meta, Google, TikTok, LinkedIn) dans un entrepôt unique.">ETL pipelines that merge HubSpot, GA4, and platform APIs (Meta, Google, TikTok, LinkedIn) into a single warehouse &mdash; so every downstream number traces back to one source.</div>
-    </div>
-    <div class="stage reveal">
-      <div class="stage-num">02</div>
-      <div class="stage-name" data-en="Attribution Modeling" data-es="Modelado de Atribución" data-fr="Modélisation d'Attribution">Attribution Modeling</div>
-      <div class="stage-desc" data-en="Custom multi-touch attribution built on top of that data, quantifying real incremental lift instead of last-click guesswork." data-es="Atribución multitoque personalizada desarrollada sobre los datos unificados, midiendo el impacto real en lugar de estimaciones." data-fr="Attribution multi-touch personnalisée basée sur ces données, quantifiant l'impact réel au lieu de simples estimations.">Custom multi-touch attribution built on top of that data, quantifying real incremental lift instead of last-click guesswork.</div>
-    </div>
-    <div class="stage reveal">
-      <div class="stage-num">03</div>
-      <div class="stage-name" data-en="Media Execution" data-es="Ejecución de Medios" data-fr="Exécution Médias">Media Execution</div>
-      <div class="stage-desc" data-en="Full-funnel buying and budget allocation across Search, Social, and programmatic DSPs, informed by the attribution model &mdash; not run separately from it." data-es="Compra de medios y asignación presupuestaria en Búsqueda, Redes y DSPs programáticos informados por el modelo de atribución." data-fr="Achat média et allocation budgétaire sur les moteurs de recherche, réseaux sociaux et DSPs basés sur le modèle d'attribution.">Full-funnel buying and budget allocation across Search, Social, and programmatic DSPs, informed by the attribution model &mdash; not run separately from it.</div>
-    </div>
-    <div class="stage reveal">
-      <div class="stage-num">04</div>
-      <div class="stage-name" data-en="Reporting &amp; Dashboards" data-es="Informes y Paneles" data-fr="Rapports &amp; Tableaux de Bord">Reporting &amp; Dashboards</div>
-      <div class="stage-desc" data-en="Executive dashboards in Looker or Power BI tracking CPA, LTV, and MER in real time, cutting reporting cycles by up to 50%." data-es="Paneles ejecutivos en Looker o Power BI que rastrean CPA, LTV y MER en tiempo real, reduciendo ciclos de informes hasta un 50%." data-fr="Tableaux de bord exécutifs dans Looker ou Power BI suivant le CPA, la LTV et le MER en temps réel, réduisant les délais de 50%.">Executive dashboards in Looker or Power BI tracking CPA, LTV, and MER in real time, cutting reporting cycles by up to 50%.</div>
-    </div>
-  </div>
-</section>
-
-<section id="track-record" class="track">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="sec-eyebrow" data-en="SELECT EXPERIENCE" data-es="EXPERIENCIA DESTACADA" data-fr="EXPÉRIENCE SÉLECTIONNÉE">SELECT EXPERIENCE</div>
-        <h2 data-en="Where this approach has run." data-es="Dónde se ha aplicado este enfoque." data-fr="Où cette approche a été appliquée.">Where this approach has run.</h2>
-      </div>
-      <p class="sec-note" data-en="Four years across agency and in-house seats, on budgets from $1M to $10M+ a month." data-es="Años de experiencia en agencias y roles internos, gestionando presupuestos de $1M a más de $10M al mes." data-fr="Plusieurs années d'expérience en agence et en entreprise, gérant des budgets de 1M$ à plus de 10M$ par mois.">Four years across agency and in-house seats, on budgets from $1M to $10M+ a month.</p>
-    </div>
-
-    <div class="role reveal">
-      <div class="role-date">Feb 2026 &mdash; Present</div>
-      <div>
-        <div class="role-title">Senior Data Analyst</div>
-        <div class="role-org">Dysrupt, New York, NY</div>
-        <div class="role-desc" data-en="Leading performance analytics for Meta Wearables (Ray-Ban, Oakley) and Paramount, scaling ROAS across $10M+ in monthly budgets and building the MTA models that unify Meta, Google, and TikTok data into one performance view." data-es="Liderando analítica de rendimiento para Meta Wearables (Ray-Ban, Oakley) y Paramount, escalando ROAS en presupuestos mensuales de $10M+ y creando modelos de atribución multitoque." data-fr="Direction des analyses de performance pour Meta Wearables (Ray-Ban, Oakley) et Paramount, optimisant le ROAS sur des budgets de 10M$+/mois.">Leading performance analytics for Meta Wearables (Ray-Ban, Oakley) and Paramount, scaling ROAS across $10M+ in monthly budgets and building the MTA models that unify Meta, Google, and TikTok data into one performance view.</div>
-        <div class="role-tags"><span class="tag">MTA modeling</span><span class="tag">Looker</span><span class="tag">Power BI</span><span class="tag">$10M+/mo</span></div>
-      </div>
-    </div>
-
-    <div class="role reveal">
-      <div class="role-date">Feb 2025 &mdash; Feb 2026</div>
-      <div>
-        <div class="role-title">Media Analyst</div>
-        <div class="role-org">Demand Drive, New York, NY</div>
-        <div class="role-desc" data-en="Optimized $1M+ in monthly ad spend across Google, Meta, LinkedIn, and programmatic DSPs &mdash; cutting CPL 15% and lifting ROAS 20% YoY, with unified ABM dashboards built on HubSpot and Syft data." data-es="Optimización de más de $1M en inversión mensual publicitaria en Google, Meta, LinkedIn y DSPs, reduciendo CPL un 15% y mejorando el ROAS un 20% interanual." data-fr="Optimisation de plus de 1M$ de dépenses publicitaires mensuelles sur Google, Meta, LinkedIn et DSPs, réduisant le CPL de 15% et augmentant le ROAS de 20%.">Optimized $1M+ in monthly ad spend across Google, Meta, LinkedIn, and programmatic DSPs &mdash; cutting CPL 15% and lifting ROAS 20% YoY, with unified ABM dashboards built on HubSpot and Syft data.</div>
-        <div class="role-tags"><span class="tag">ABM dashboards</span><span class="tag">GA4</span><span class="tag">SQL pipelines</span></div>
-      </div>
-    </div>
-
-    <div class="role reveal">
-      <div class="role-date">June 2023 &mdash; Feb 2025</div>
-      <div>
-        <div class="role-title">Senior Associate, Media Services</div>
-        <div class="role-org">New Engen Inc., Seattle, WA</div>
-        <div class="role-desc" data-en="Managed $5M in monthly budget across Meta, TikTok, Bing, and Google for DTC, subscription, and B2C brands, owning vendor relationships and account-level testing strategy." data-es="Gestión de $5M en presupuesto mensual en Meta, TikTok, Bing y Google para marcas DTC y de suscripción." data-fr="Gestion de 5M$ de budget mensuel sur Meta, TikTok, Bing et Google pour des marques DTC et d'abonnement.">Managed $5M in monthly budget across Meta, TikTok, Bing, and Google for DTC, subscription, and B2C brands, owning vendor relationships and account-level testing strategy.</div>
-        <div class="role-tags"><span class="tag">$5M/mo</span><span class="tag">Full-funnel</span></div>
-      </div>
-    </div>
-
-    <div class="role reveal">
-      <div class="role-date">July 2021 &mdash; June 2023</div>
-      <div>
-        <div class="role-title">Marketing Analyst</div>
-        <div class="role-org">Executive Insight Properties, Issaquah, WA</div>
-        <div class="role-desc" data-en="Ran market research and database management across consumers, retailers, and distributors, translating large-scale data into decision-ready reports." data-es="Análisis de mercado y gestión de bases de datos para traducir grandes volúmenes de datos en informes ejecutivos." data-fr="Études de marché et gestion de bases de données pour traduire des données à grande échelle en rapports décisionnels.">Ran market research and database management across consumers, retailers, and distributors, translating large-scale data into decision-ready reports.</div>
-        <div class="role-tags"><span class="tag">Market research</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="credentials">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="sec-eyebrow" data-en="CREDENTIALS" data-es="CREDENCIALES" data-fr="CERTIFICATIONS">CREDENTIALS</div>
-        <h2 data-en="The certifications behind the work." data-es="Las certificaciones detrás del trabajo." data-fr="Les certifications derrière le travail.">The certifications behind the work.</h2>
-      </div>
-    </div>
-
-    <div class="creds-grid reveal">
-      <div class="cred">
-        <div class="cred-cat" data-en="DATA &amp; ANALYTICS" data-es="DATOS Y ANALÍTICA" data-fr="DONNÉES &amp; ANALYTIQUE">DATA &amp; ANALYTICS</div>
-        <div class="cred-item">Google Analytics Certification (GA4)</div>
-        <div class="cred-item">SQL Certification</div>
-      </div>
-      <div class="cred">
-        <div class="cred-cat" data-en="MEDIA &amp; SEARCH" data-es="MEDIOS Y BÚSQUEDA" data-fr="MÉDIAS &amp; RECHERCHE">MEDIA &amp; SEARCH</div>
-        <div class="cred-item">Meta Certified Media Planning Professional</div>
-        <div class="cred-item">Meta Certified Media Buying Professional</div>
-        <div class="cred-item">Google Ads Search Certification</div>
-        <div class="cred-item">Semrush SEO &amp; PPC Certifications</div>
-      </div>
-      <div class="cred">
-        <div class="cred-cat" data-en="STACK &amp; PARTNERS" data-es="TECNOLOGÍA Y SOCIOS" data-fr="TECHNOLOGY &amp; PARTENAIRES">STACK &amp; PARTNERS</div>
-        <div class="cred-item">SQL &middot; Looker &middot; Power BI &middot; Tableau</div>
-        <div class="cred-item">Meta Ads &middot; TikTok Ads &middot; StackAdapt</div>
-        <div class="cred-item" style="color:var(--signal); margin-top:6px; font-weight:500;">✓ Meta Business Partner &middot; Google Premier Partner</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="faq-section">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="sec-eyebrow" data-en="FREQUENTLY ASKED QUESTIONS" data-es="PREGUNTAS FRECUENTES" data-fr="FOIRE AUX QUESTIONS">FREQUENTLY ASKED QUESTIONS</div>
-        <h2 data-en="Working with Schwartz Media." data-es="Trabajar con Schwartz Media." data-fr="Travailler avec Schwartz Media.">Working with Schwartz Media.</h2>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="faq-item">
-        <div class="faq-q"><span data-en="What media budget sizes do you typically work with?" data-es="¿Con qué tamaños de presupuesto trabajan típicamente?" data-fr="Quels sont les budgets médias traités habituellement ?">What media budget sizes do you typically work with?</span> <span class="faq-icon">+</span></div>
-        <div class="faq-a" data-en="Engagements typically focus on brands spending between $50k/mo to $10M+/mo across digital channels where structured attribution and pipeline modeling yield high ROI." data-es="Los proyectos suelen centrarse en marcas que invierten entre $50k/mes y $10M+/mes en canales digitales." data-fr="Les projets s'adressent aux marques dépensant entre 50k$/mois et plus de 10M$/mois sur les canaux numériques.">Engagements typically focus on brands spending between $50k/mo to $10M+/mo across digital channels where structured attribution and pipeline modeling yield high ROI.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span data-en="How does project onboarding work?" data-es="¿Cómo funciona la incorporación de proyectos?" data-fr="Comment se déroule l'intégration d'un projet ?">How does project onboarding work?</span> <span class="faq-icon">+</span></div>
-        <div class="faq-a" data-en="We begin with a 2-week data audit step (Phase 01) to verify pixel tracking, server-side events, and warehouse architecture before recommending media allocations." data-es="Comenzamos con una auditoría de datos de 2 semanas (Fase 01) para verificar el seguimiento antes de recomendar asignaciones de medios." data-fr="Nous commençons par une phase d'audit des données de 2 semaines (Phase 01) pour vérifier le suivi avant de recommander les allocations.">We begin with a 2-week data audit step (Phase 01) to verify pixel tracking, server-side events, and warehouse architecture before recommending media allocations.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><span data-en="Do you manage creative production or just media data?" data-es="¿Gestionan la producción creativa o solo datos?" data-fr="Gérez-vous la production créative ou uniquement les données ?">Do you manage creative production or just media data?</span> <span class="faq-icon">+</span></div>
-        <div class="faq-a" data-en="Focus is centered on analytical strategy, ad operations, reporting pipelines, and attribution, working closely alongside your in-house or external creative teams." data-es="El enfoque está centrado en la estrategia analítica, operaciones de anuncios, canalizaciones de informes y atribución." data-fr="L'accent est mis sur la stratégie analytique, les opérations publicitaires, les rapports et l'attribution.">Focus is centered on analytical strategy, ad operations, reporting pipelines, and attribution, working closely alongside your in-house or external creative teams.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="wrap contact-grid">
-    <div class="reveal">
-      <div class="sec-eyebrow" data-en="GET IN TOUCH" data-es="CONTACTAR" data-fr="CONTACTER">GET IN TOUCH</div>
-      <h2 data-en="Bring the data question first." data-es="Comience con la pregunta de datos." data-fr="Commencez par la question de données.">Bring the data question first.</h2>
-      <p class="contact-copy" data-en="Whether it's an attribution model that doesn't add up, a reporting stack that takes a week to close, or a media budget that needs a second set of eyes &mdash; start with what you're trying to measure." data-es="Ya sea un modelo de atribución que no cuadra o un informe que tarda semanas en cerrarse, comience con lo que intenta medir." data-fr="Qu'il s'agisse d'un modèle d'attribution inexact ou de rapports trop longs à produire, commencez par ce que vous cherchez à mesurer.">Whether it's an attribution model that doesn't add up, a reporting stack that takes a week to close, or a media budget that needs a second set of eyes &mdash; start with what you're trying to measure.</p>
-      <button class="btn btn-primary open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
-    </div>
-    <div class="reveal">
-      <div class="contact-list">
-        <div class="contact-row"><span>Email</span><a href="mailto:ethanjosephschwartz@gmail.com">ethanjosephschwartz@gmail.com</a></div>
-        <div class="contact-row"><span>Phone</span><a href="tel:+12067907987">(206) 790-7987</a></div>
-        <div class="contact-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">/ethanjosephschwartz</a></div>
-        <div class="contact-row">
-          <span data-en="Based in" data-es="Ubicación" data-fr="Basé à">Based in</span>
-          <div class="edu-block">
-            <b>Jersey City, NJ</b><br>
-            <span style="color:var(--muted); font-size:0.8rem;">George Washington University — B.A. Marketing, Minor in History &middot; ESSEC Business School</span>
-          </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="brand-logo notranslate">SCHWARTZ MEDIA<span>.</span></a>
+            
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact" class="btn btn-primary" style="padding: 8px 16px; color: #000;">Let's Talk →</a></li>
+                </ul>
+                
+                <!-- Google Translate Dropdown Container -->
+                <div id="google_translate_element"></div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </nav>
 
-<footer class="wrap">
-  <span>&copy; 2026 Schwartz Media. Ethan Schwartz.</span>
-  <span>schwartzmedia.co</span>
-</footer>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-tagline">Data • Strategy • Growth</div>
+            <h1>Performance Marketing for<br>Brands Ready to Scale</h1>
+            <p>Schwartz Media helps growing companies turn paid media, advanced analytics, SEO, and strategy into predictable, measurable business growth.</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </header>
 
-<!-- CONTACT US MODAL -->
-<div class="modal-overlay" id="contactModal">
-  <div class="modal-card">
-    <button class="modal-close" id="closeModal">&times;</button>
-    <div class="card-tag" style="margin-bottom:8px;" data-en="Start A Project" data-es="Iniciar Un Proyecto" data-fr="Lancer Un Projet">Start A Project</div>
-    <div class="card-title" style="margin-bottom:16px;" data-en="Let's talk growth &amp; data architecture." data-es="Hablemos de crecimiento y arquitectura de datos." data-fr="Parlons croissance &amp; architecture de données.">Let's talk growth &amp; data architecture.</div>
-    <form action="https://formspree.io/f/xbjnqpkp" method="POST" id="modalForm">
-      <div class="form-group">
-        <label for="name" data-en="FULL NAME" data-es="NOMBRE COMPLETO" data-fr="NOM COMPLET">FULL NAME</label>
-        <input type="text" id="name" name="name" required placeholder="Ethan Schwartz">
-      </div>
-      <div class="form-group">
-        <label for="email" data-en="WORK EMAIL" data-es="CORREO TRABAJO" data-fr="E-MAIL PROFESSIONNEL">WORK EMAIL</label>
-        <input type="email" id="email" name="email" required placeholder="ethan@company.com">
-      </div>
-      <div class="form-group">
-        <label for="phone" data-en="PHONE NUMBER" data-es="TELÉFONO" data-fr="NUMÉRO DE TÉLÉPHONE">PHONE NUMBER</label>
-        <input type="tel" id="phone" name="phone" required placeholder="(206) 790-7987">
-      </div>
-      <div class="form-group">
-        <label for="budget" data-en="MONTHLY AD SPEND" data-es="INVERSIÓN MENSUAL" data-fr="DÉPENSES MENSUELLES">MONTHLY AD SPEND</label>
-        <select id="budget" name="budget">
-          <option value="under50k">&lt; $50k / month</option>
-          <option value="50k-250k">$50k - $250k / month</option>
-          <option value="250k-1M">$250k - $1M / month</option>
-          <option value="1M+">$1M+ / month</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message" data-en="PROJECT DETAILS / GOALS" data-es="DETALLES / OBJETIVOS DEL PROYECTO" data-fr="DÉTAILS / OBJECTIFS DU PROJET">PROJECT DETAILS / GOALS</label>
-        <textarea id="message" name="message" rows="3" placeholder="Tell us about your current tracking, media channels, or reporting challenges..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;" data-en="Submit Inquiry" data-es="Enviar Consulta" data-fr="Envoyer la Demande">Submit Inquiry</button>
-    </form>
-  </div>
-</div>
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number"><span>$</span>1M+</div>
+                    <div class="stat-label">Media Spend Managed</div>
+                </div>
+                <div>
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Ad Channels</div>
+                </div>
+                <div>
+                    <div class="stat-number">100<span>%</span></div>
+                    <div class="stat-label">Data-Driven</div>
+                </div>
+                <div>
+                    <div class="stat-number">Full</div>
+                    <div class="stat-label">Funnel Strategy</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-subtitle">Marketing systems built specifically around your revenue targets.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Paid Media</h3>
+                    <p>Full-funnel acquisition across Google, Meta, TikTok, and programmatic platforms focused on ROAS and lowering CPA.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Marketing Analytics</h3>
+                    <p>GA4 setup, custom reporting dashboards, attribution modeling, and tracking to eliminate spend waste.</p>
+                </div>
+                <div class="service-card">
+                    <h3>SEO Strategy</h3>
+                    <p>Technical SEO audits, keyword positioning, and content architecture designed for sustainable organic acquisition.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Growth Strategy</h3>
+                    <p>Data-driven strategic roadmaps aligned directly to unit economics, margins, and aggressive scaling goals.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Conversion Strategy</h3>
+                    <p>Landing page evaluation, messaging alignment, and offer positioning to improve traffic-to-lead conversion rates.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Cross-Channel Integration</h3>
+                    <p>Connecting media buy data with CRM and post-click metrics to deliver a unified view of your pipeline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  // Language Switcher Logic
-  function setLanguage(lang) {
-    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-      el.innerHTML = el.getAttribute('data-' + lang);
-    });
-    
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-  }
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Built on Experience. Focused on Results.</h2>
+                <p class="section-subtitle">Agency-level performance marketing without the bloat.</p>
+            </div>
+            <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 36px; border-radius: 8px;">
+                <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 16px;">
+                    Schwartz Media was founded on a straightforward principle: strategic marketing decisions should be dictated by clean data, not guesswork or agency fluff.
+                </p>
+                <p style="font-size: 1.05rem; color: var(--text-muted);">
+                    Bringing hands-on expertise across paid acquisition, multi-channel analytics, and SEO, Schwartz Media provides brands direct access to specialized growth expertise with transparent execution and total accountability.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  // Count-up stats
-  function animateCount(el){
-    const target = parseFloat(el.dataset.count);
-    const suffix = el.dataset.suffix || "";
-    const prefix = el.dataset.prefix || "";
-    const dur = 1100;
-    const start = performance.now();
-    function step(now){
-      const p = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const val = Math.round(target * eased);
-      el.innerHTML = prefix + val + suffix;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    if (reduceMotion) {
-      el.innerHTML = prefix + target + suffix;
-    } else {
-      requestAnimationFrame(step);
-    }
-  }
+    <!-- Results -->
+    <section id="results" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Selected Experience & Impact</h2>
+                <p class="section-subtitle">Representative performance metrics across previous client engagements.</p>
+            </div>
+            <div class="results-grid">
+                <div class="result-card">
+                    <span class="result-tag">E-Commerce / Paid Acquisition</span>
+                    <h3>Multi-Channel Campaign Optimization</h3>
+                    <div class="result-metrics">
+                        <div>
+                            <div class="metric-val">+42%</div>
+                            <div class="metric-lbl">ROAS Increase</div>
+                        </div>
+                        <div>
+                            <div class="metric-val">-28%</div>
+                            <div class="metric-lbl">CPA Reduction</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Restructured audience targeting, account hierarchy, and creative allocation across Google and Meta paid channels.</p>
+                </div>
+                <div class="result-card">
+                    <span class="result-tag">Analytics & Attribution</span>
+                    <h3>GA4 Audit & Measurement Framework</h3>
+                    <div class="result-metrics">
+                        <div>
+                            <div class="metric-val">100%</div>
+                            <div class="metric-lbl">Tracking Accuracy</div>
+                        </div>
+                        <div>
+                            <div class="metric-val">3.5x</div>
+                            <div class="metric-lbl">Insights Velocity</div>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Rebuilt fragmented tracking setups into custom, real-time analytics dashboards to direct monthly ad spend efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){
-        animateCount(entry.target);
-        statObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll(".stat-num").forEach(el => statObserver.observe(el));
+    <!-- Process -->
+    <section id="process" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple. Strategic. Transparent.</h2>
+                <p class="section-subtitle">How we partner with your team.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <h4>Discover</h4>
+                    <p>Deep dive into your current channels, unit economics, target audiences, and business targets.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <h4>Analyze</h4>
+                    <p>Audit historical campaign data, analytics setups, and funnel performance to identify leaks.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <h4>Strategize</h4>
+                    <p>Build a prioritized media, tracking, and growth roadmap designed explicitly around your goals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <h4>Execute</h4>
+                    <p>Launch campaigns, optimize bidding and creative, measure performance, and continually scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  // Scroll reveal
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){
-        entry.target.classList.add("in");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+    <!-- CTA -->
+    <section id="contact" class="container">
+        <div class="cta-section">
+            <h2>Ready to Build a Smarter Marketing Strategy?</h2>
+            <p>Let's talk about what's working, what's not, and where your largest growth opportunities lie. No sales pitch—just a direct conversation about your goals.</p>
+            <a href="mailto:contact@schwartzmedia.co" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">Book a Free Growth Call →</a>
+            <div style="margin-top: 16px; font-size: 0.85rem; color: var(--text-muted);">Or email directly: contact@schwartzmedia.co</div>
+        </div>
+    </section>
 
-  // Interactive Client Detail Cards
-  const chips = document.querySelectorAll('.client-chip');
-  const cards = document.querySelectorAll('.client-detail-card');
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const targetId = chip.getAttribute('data-target');
-      const targetCard = document.getElementById(targetId);
-
-      if (chip.classList.contains('active')) {
-        chip.classList.remove('active');
-        targetCard.classList.remove('active');
-      } else {
-        chips.forEach(c => c.classList.remove('active'));
-        cards.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        targetCard.classList.add('active');
-      }
-    });
-  });
-
-  // FAQ Accordion
-  document.querySelectorAll(".faq-q").forEach(q => {
-    q.addEventListener("click", () => {
-      const item = q.parentElement;
-      item.classList.toggle("active");
-      const icon = q.querySelector(".faq-icon");
-      icon.textContent = item.classList.contains("active") ? "−" : "+";
-    });
-  });
-
-  // Modal Functionality
-  const modal = document.getElementById("contactModal");
-  const openBtns = document.querySelectorAll(".open-modal-btn");
-  const closeBtn = document.getElementById("closeModal");
-
-  openBtns.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.classList.add("open");
-    });
-  });
-
-  closeBtn.addEventListener("click", () => modal.classList.remove("open"));
-  modal.addEventListener("click", (e) => {
-    if(e.target === modal) modal.classList.remove("open");
-  });
-</script>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div>&copy; 2026 Schwartz Media. All rights reserved.</div>
+            <div>Performance Marketing & Growth Consulting</div>
+        </div>
+    </footer>
 
 </body>
 </html>
