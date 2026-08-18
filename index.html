@@ -43,40 +43,85 @@
     background:rgba(250,250,252,0.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
+    width:100%;
   }
   nav.wrap{
-    display:flex;align-items:center;justify-space:between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     height:76px;
+    gap:20px;
   }
   .logo{
     font-family:var(--display);
     font-weight:700;
     font-size:1.15rem;
     letter-spacing:-0.01em;
-    display:flex;align-items:center;gap:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    white-space:nowrap;
+    flex-shrink:0;
   }
   .logo img{
-    height:42px;
+    height:38px;
     width:auto;
     object-fit:contain;
   }
-  .navlinks{display:flex;gap:36px;font-size:0.92rem;color:var(--muted);}
+  .navlinks{
+    display:flex;
+    gap:24px;
+    font-size:0.9rem;
+    color:var(--muted);
+    align-items:center;
+    margin-left:auto;
+  }
   .navlinks a{transition:color .2s ease;}
   .navlinks a:hover, .navlinks a:focus-visible{color:var(--text);}
+  
+  /* Language Switcher UI */
+  .lang-switcher{
+    display:flex;
+    gap:6px;
+    background:var(--paper-2);
+    padding:4px 8px;
+    border-radius:4px;
+    border:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:0.75rem;
+  }
+  .lang-btn{
+    background:none;
+    border:none;
+    color:var(--muted);
+    cursor:pointer;
+    font-weight:500;
+    padding:2px 4px;
+    border-radius:2px;
+    transition:all .2s ease;
+  }
+  .lang-btn.active, .lang-btn:hover{
+    color:var(--text);
+    background:var(--paper);
+    font-weight:700;
+  }
+
   .nav-cta{
     font-family:var(--mono);
     font-size:0.82rem;
-    padding:9px 16px;
+    padding:9px 18px;
     border:1px solid var(--line);
     border-radius:4px;
     color:var(--text);
     background:var(--paper);
     cursor:pointer;
+    white-space:nowrap;
+    flex-shrink:0;
     transition:border-color .2s ease, background .2s ease;
   }
   .nav-cta:hover, .nav-cta:focus-visible{border-color:var(--signal);background:var(--signal-light);}
 
-  @media (max-width:760px){.navlinks{display:none;}}
+  @media (max-width:860px){.navlinks{display:none;}}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -215,28 +260,66 @@
     letter-spacing:0.06em;
     text-transform:uppercase;
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:24px;
   }
   .clients-grid{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
     align-items:center;
-    gap:20px 40px;
+    gap:16px 24px;
   }
   .client-chip{
     font-family:var(--display);
-    font-size:1.15rem;
+    font-size:1.05rem;
     font-weight:600;
     color:var(--text);
-    opacity:0.75;
-    padding:8px 16px;
+    padding:10px 20px;
     border:1px solid var(--line);
     border-radius:6px;
     background:var(--paper);
-    transition:opacity .2s ease, border-color .2s ease;
+    cursor:pointer;
+    transition:all .2s ease;
+    user-select:none;
   }
-  .client-chip:hover{opacity:1;border-color:var(--signal);}
+  .client-chip:hover, .client-chip.active{
+    border-color:var(--signal);
+    background:var(--signal-light);
+    color:var(--signal);
+    transform:translateY(-1px);
+  }
+  
+  .client-detail-card{
+    margin-top:24px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:24px 28px;
+    display:none;
+    box-shadow:0 10px 25px -5px rgba(0,0,0,0.04);
+  }
+  .client-detail-card.active{display:block;animation:fadeIn .3s ease;}
+  .client-detail-title{
+    font-family:var(--display);
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .client-detail-body{
+    color:var(--muted);
+    font-size:0.95rem;
+    line-height:1.65;
+    max-width:85ch;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(6px);}
+    to{opacity:1;transform:none;}
+  }
 
   /* ---------- SECTION HEADS ---------- */
   section{padding:96px 0;}
@@ -450,7 +533,6 @@
     border-color:var(--signal);
   }
 
-  /* reveal animations */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
 
@@ -470,35 +552,40 @@
       Schwartz Media
     </div>
     <div class="navlinks">
-      <a href="#services">Services</a>
-      <a href="#track-record">Track Record</a>
-      <a href="#credentials">Credentials</a>
-      <a href="#faq">FAQ</a>
+      <a href="#services" data-en="Services" data-es="Servicios" data-fr="Services">Services</a>
+      <a href="#track-record" data-en="Track Record" data-es="Trayectoria" data-fr="Parcours">Track Record</a>
+      <a href="#credentials" data-en="Credentials" data-es="Credenciales" data-fr="Certifications">Credentials</a>
+      <a href="#faq" data-en="FAQ" data-es="Preguntas" data-fr="FAQ">FAQ</a>
       <a href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <button class="nav-cta open-modal-btn">Start a project</button>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+      <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+    </div>
+    <button class="nav-cta open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
   </nav>
 </header>
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow">PERFORMANCE DATA &amp; MEDIA CONSULTANCY</div>
-      <h1>Full-funnel media, <em>run like a data pipeline.</em></h1>
-      <p class="hero-sub">Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands.</p>
+      <div class="eyebrow" data-en="PERFORMANCE DATA &amp; MEDIA CONSULTANCY" data-es="CONSULTORÍA DE DATOS Y MEDIOS" data-fr="CONSEIL EN DONNÉES &amp; MÉDIAS">PERFORMANCE DATA &amp; MEDIA CONSULTANCY</div>
+      <h1 data-en="Full-funnel media, &lt;em&gt;run like a data pipeline.&lt;/em&gt;" data-es="Medios de embudo completo, &lt;em&gt;como un flujo de datos.&lt;/em&gt;" data-fr="Médias full-funnel, &lt;em&gt;gérés comme un flux de données.&lt;/em&gt;">Full-funnel media, <em>run like a data pipeline.</em></h1>
+      <p class="hero-sub" data-en="Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands." data-es="Schwartz Media es la consultora de Ethan Schwartz para marcas que desean tratar su inversión publicitaria como un conjunto de datos: analizado, atribuido y reportado con precisión. Desarrollado tras más de 5 años gestionando más de $50M mensuales." data-fr="Schwartz Media est la pratique d'Ethan Schwartz pour les marques souhaitant traiter leurs dépenses publicitaires comme un jeu de données : analysé, attribué et reporté. Basé sur plus de 5 ans de gestion de plus de 50M$ de budgets mensuels.">Schwartz Media is Ethan Schwartz's practice for brands that want their ad spend treated like a dataset: queried, attributed, and reported on &mdash; not guessed at. Built on 5+ years managing $50M+ in monthly budgets for lifestyle and e-commerce brands.</p>
       <div class="hero-cta">
-        <button class="btn btn-primary open-modal-btn">Start a project</button>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <button class="btn btn-primary open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener" data-en="Connect on LinkedIn" data-es="Conectar en LinkedIn" data-fr="Se connecter sur LinkedIn">Connect on LinkedIn</a>
       </div>
     </div>
 
     <!-- Case Studies Card -->
     <a href="#track-record" class="case-studies-card">
-      <div class="card-tag">Featured Work</div>
-      <div class="card-title">Explore Case Studies &amp; Track Record &rarr;</div>
-      <div class="card-desc">See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets.</div>
+      <div class="card-tag" data-en="Featured Work" data-es="Trabajo Destacado" data-fr="Projets En Vedette">Featured Work</div>
+      <div class="card-title" data-en="Explore Case Studies &amp; Track Record &rarr;" data-es="Explorar Casos de Estudio y Trayectoria &rarr;" data-fr="Explorer les Études de Cas &amp; Parcours &rarr;">Explore Case Studies &amp; Track Record &rarr;</div>
+      <div class="card-desc" data-en="See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets." data-es="Vea cómo la arquitectura de datos, la atribución multitoque y la gestión presupuestaria algorítmica escalaron el ROAS en presupuestos de más de $10M mensuales." data-fr="Découvrez comment l'architecture de données, l'attribution multi-touch et la gestion budgétaire algorithmique ont augmenté le ROAS sur des budgets de plus de 10M$/mois.">See how data architecture, multi-touch attribution, and algorithmic budget management scaled ROAS across $10M+ monthly ad budgets.</div>
       <div>
-        <span class="btn btn-primary">Visit Case Studies</span>
+        <span class="btn btn-primary" data-en="Visit Case Studies" data-es="Ver Casos de Estudio" data-fr="Voir les Études de Cas">Visit Case Studies</span>
       </div>
     </a>
   </div>
@@ -507,26 +594,98 @@
 <!-- STATS BAND -->
 <div class="stats">
   <div class="wrap stats-grid">
-    <div class="stat"><div class="stat-num" data-count="50" data-suffix="M+">0</div><div class="stat-label">Monthly budget under active management</div></div>
-    <div class="stat"><div class="stat-num" data-count="50" data-suffix="%"  data-prefix="&minus;">0</div><div class="stat-label">Reduction in reporting cycle time</div></div>
-    <div class="stat"><div class="stat-num" data-count="20" data-suffix="%" data-prefix="+">0</div><div class="stat-label">YoY ROAS improvement delivered</div></div>
-    <div class="stat"><div class="stat-num" data-count="15" data-suffix="%" data-prefix="&minus;">0</div><div class="stat-label">CPL reduction across paid channels</div></div>
+    <div class="stat"><div class="stat-num" data-count="50" data-suffix="M+">0</div><div class="stat-label" data-en="Monthly budget under active management" data-es="Presupuesto mensual bajo gestión activa" data-fr="Budget mensuel sous gestion active">Monthly budget under active management</div></div>
+    <div class="stat"><div class="stat-num" data-count="50" data-suffix="%"  data-prefix="&minus;">0</div><div class="stat-label" data-en="Reduction in reporting cycle time" data-es="Reducción en el tiempo de ciclo de informes" data-fr="Réduction du temps del'élaboration des rapports">Reduction in reporting cycle time</div></div>
+    <div class="stat"><div class="stat-num" data-count="20" data-suffix="%" data-prefix="+">0</div><div class="stat-label" data-en="YoY ROAS improvement delivered" data-es="Mejora interanual entregada en ROAS" data-fr="Amélioration du ROAS d'une année sur l'autre">YoY ROAS improvement delivered</div></div>
+    <div class="stat"><div class="stat-num" data-count="15" data-suffix="%" data-prefix="&minus;">0</div><div class="stat-label" data-en="CPL reduction across paid channels" data-es="Reducción de CPL en canales pagados" data-fr="Réduction del'CPL sur les canaux payants">CPL reduction across paid channels</div></div>
   </div>
 </div>
 
 <!-- CLIENT ACCOUNT EXPERIENCE -->
 <div class="clients-section">
   <div class="wrap">
-    <div class="clients-label">Select Client Account Experience</div>
+    <div class="clients-label" data-en="Select Client Account Experience &mdash; Click to view details" data-es="Experiencia en Cuentas de Clientes &mdash; Haga clic para ver detalles" data-fr="Expérience Clients Sélectionnée &mdash; Cliquez pour voir les détails">Select Client Account Experience &mdash; Click to view details</div>
     <div class="clients-grid">
-      <div class="client-chip">Everlane</div>
-      <div class="client-chip">1-800-Flowers</div>
-      <div class="client-chip">Meta</div>
-      <div class="client-chip">Alvamed</div>
-      <div class="client-chip">Ametros</div>
-      <div class="client-chip">Gravyty</div>
-      <div class="client-chip">Lee Co.</div>
+      <div class="client-chip" data-target="everlane">Everlane</div>
+      <div class="client-chip" data-target="flowers">1-800-Flowers</div>
+      <div class="client-chip" data-target="meta">Meta</div>
+      <div class="client-chip" data-target="alvamed">Alvamed</div>
+      <div class="client-chip" data-target="ametros">Ametros</div>
+      <div class="client-chip" data-target="gravyty">Gravyty</div>
+      <div class="client-chip" data-target="leeco">Lee Co.</div>
     </div>
+
+    <!-- DETAIL CARDS -->
+    <div class="client-detail-card" id="everlane">
+      <div class="client-detail-title">
+        <span data-en="Everlane &mdash; Paid Search &amp; Social Channel Management" data-es="Everlane &mdash; Gestión de Búsqueda y Redes Pagadas" data-fr="Everlane &mdash; Gestion des Canaux Payants">Everlane &mdash; Paid Search &amp; Social Channel Management</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">DTC / Retail</span>
+      </div>
+      <div class="client-detail-body" data-en="Managed core full-funnel Paid Search and Paid Social execution across Google, Meta, and Pinterest. Optimized audience bidding hierarchies, product feed performance, and creative testing frameworks to deliver profitable customer acquisition and maximize return on ad spend across major promotional periods." data-es="Gestión integral de Búsqueda Pagada y Redes Pagadas en Google, Meta y Pinterest. Optimización de jerarquías de pujas, rendimiento de feeds de productos y pruebas creativas para maximizar el ROAS durante los períodos promocionales clave." data-fr="Gestion complète de la Recherche Payante et des Réseaux Sociaux Payants sur Google, Meta et Pinterest. Optimisation des enchères, des flux de produits et du test de créations pour maximiser le ROAS lors des périodes promotionnelles majeures.">
+        Managed core full-funnel Paid Search and Paid Social execution across Google, Meta, and Pinterest. Optimized audience bidding hierarchies, product feed performance, and creative testing frameworks to deliver profitable customer acquisition and maximize return on ad spend across major promotional periods.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="flowers">
+      <div class="client-detail-title">
+        <span data-en="1-800-Flowers &mdash; Full-Funnel Paid Search &amp; Social Operations" data-es="1-800-Flowers &mdash; Operaciones de Medios Pagados" data-fr="1-800-Flowers &mdash; Opérations Médias Payants">1-800-Flowers &mdash; Full-Funnel Paid Search &amp; Social Operations</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">E-Commerce</span>
+      </div>
+      <div class="client-detail-body" data-en="Spearheaded multi-channel Paid Search and Paid Social campaigns spanning Google, Meta, and Pinterest. Focused on high-velocity seasonal campaigns, dynamic product ads, and strict return-on-ad-spend metrics to drive revenue during peak demand cycles." data-es="Lideró campañas multicanal de Búsqueda y Social Pagado en Google, Meta y Pinterest. Enfocado en campañas estacionales de alta velocidad, anuncios dinámicos de productos y métricas estrictas de ROAS para impulsar ingresos en temporadas pico." data-fr="Direction de campagnes multicanaux sur Google, Meta et Pinterest. Focalisation sur les campagnes saisonnières à forte vélocité, les publicités dynamiques de produits et le respect strict du ROAS pendant les pics de demande.">
+        Spearheaded multi-channel Paid Search and Paid Social campaigns spanning Google, Meta, and Pinterest. Focused on high-velocity seasonal campaigns, dynamic product ads, and strict return-on-ad-spend metrics to drive revenue during peak demand cycles.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="meta">
+      <div class="client-detail-title">
+        <span data-en="Meta &mdash; Reality Labs Hardware &amp; Global ONP Social" data-es="Meta &mdash; Hardware Reality Labs y Redes ONP Globales" data-fr="Meta &mdash; Matériel Reality Labs &amp; Médias Sociaux ONP">Meta &mdash; Reality Labs Hardware &amp; Global ONP Social</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Enterprise Technology</span>
+      </div>
+      <div class="client-detail-body" data-en="Led media strategy and execution for Reality Labs flagship hardware products, including Ray-Ban Meta Smart Glasses, running international campaigns across EMEA. Additionally directed global Organic &amp; Paid (ONP) social campaign architectures across Rest of World (ROW) markets to elevate brand adoption and full-funnel engagement." data-es="Lideró la estrategia de medios para productos clave de Reality Labs, incluidas las gafas Ray-Ban Meta en EMEA. Dirigió arquitecturas de campañas orgánicas y pagadas (ONP) en mercados internacionales para elevar la adopción de marca." data-fr="Gestion de la stratégie média pour les produits phares de Reality Labs, notamment les lunettes Ray-Ban Meta en EMEA. Direction des campagnes d'architectures sociales organiques et payantes (ONP) sur les marchés internationaux.">
+        Led media strategy and execution for Reality Labs flagship hardware products, including Ray-Ban Meta Smart Glasses, running international campaigns across EMEA. Additionally directed global Organic &amp; Paid (ONP) social campaign architectures across Rest of World (ROW) markets to elevate brand adoption and full-funnel engagement.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="alvamed">
+      <div class="client-detail-title">
+        <span data-en="Alvamed &mdash; B2B Lead Generation &amp; Performance Media" data-es="Alvamed &mdash; Generación de Leads B2B" data-fr="Alvamed &mdash; Génération de Leads B2B">Alvamed &mdash; B2B Lead Generation &amp; Performance Media</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Healthcare &amp; Life Sciences</span>
+      </div>
+      <div class="client-detail-body" data-en="Managed specialized B2B performance campaigns across Google and LinkedIn, capturing high-intent medical device consulting queries and driving structured lead pipelines with transparent multi-touch attribution." data-es="Gestión de campañas B2B en Google y LinkedIn para captar consultas de consultoría en dispositivos médicos de alta intención, impulsando embudos de clientes potenciales estructurados con atribución transparente." data-fr="Gestion de campagnes de performance B2B sur Google et LinkedIn pour capter les requêtes à forte intention dans le secteur des dispositifs médicaux, générant des prospects qualifiés avec une attribution transparente.">
+        Managed specialized B2B performance campaigns across Google and LinkedIn, capturing high-intent medical device consulting queries and driving structured lead pipelines with transparent multi-touch attribution.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="ametros">
+      <div class="client-detail-title">
+        <span data-en="Ametros &mdash; Performance Growth &amp; Attribution" data-es="Ametros &mdash; Crecimiento y Atribución" data-fr="Ametros &mdash; Croissance &amp; Attribution">Ametros &mdash; Performance Growth &amp; Attribution</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Financial &amp; Healthcare Tech</span>
+      </div>
+      <div class="client-detail-body" data-en="Executed performance media strategies across search and paid social channels, structuring tracking pipelines and ad group hierarchies that consistently lowered cost-per-lead while maintaining high lead qualification standards." data-es="Ejecutó estrategias de medios de rendimiento en búsqueda y redes pagadas, estructurando canalizaciones de seguimiento e historias de anuncios que redujeron sistemáticamente el costo por lead." data-fr="Exécution de stratégies médias de performance sur les réseaux sociaux et moteurs de recherche, avec des pipelines de suivi qui ont permis de réduire durablement le coût par lead.">
+        Executed performance media strategies across search and paid social channels, structuring tracking pipelines and ad group hierarchies that consistently lowered cost-per-lead while maintaining high lead qualification standards.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="gravyty">
+      <div class="client-detail-title">
+        <span data-en="Gravyty &mdash; B2B Demand Generation" data-es="Gravyty &mdash; Generación de Demanda B2B" data-fr="Gravyty &mdash; Génération de Demande B2B">Gravyty &mdash; B2B Demand Generation</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">SaaS &amp; Higher Ed Tech</span>
+      </div>
+      <div class="client-detail-body" data-en="Architected ABM and demand generation campaigns across LinkedIn and Google Search, connecting platform conversions directly to CRM pipeline value to ensure full alignment between media spend and closed-won revenue." data-es="Diseñó campañas de ABM y generación de demanda en LinkedIn y Google Search, conectando las conversiones de la plataforma directamente al valor del pipeline del CRM." data-fr="Conception de campagnes d'ABM et de génération de demande sur LinkedIn et Google Search, reliant directement les conversions sur plateforme aux opportunités générées dans le CRM.">
+        Architected ABM and demand generation campaigns across LinkedIn and Google Search, connecting platform conversions directly to CRM pipeline value to ensure full alignment between media spend and closed-won revenue.
+      </div>
+    </div>
+
+    <div class="client-detail-card" id="leeco">
+      <div class="client-detail-title">
+        <span data-en="Lee Co. &mdash; Multi-Channel Digital Acquisition" data-es="Lee Co. &mdash; Adquisición Digital Multicanal" data-fr="Lee Co. &mdash; Acquisition Numérique Multicanale">Lee Co. &mdash; Multi-Channel Digital Acquisition</span>
+        <span style="font-family:var(--mono); font-size:0.75rem; color:var(--signal);">Consumer &amp; Commercial Services</span>
+      </div>
+      <div class="client-detail-body" data-en="Oversee search, social, and targeted programmatic campaigns, streamlining attribution models and optimizing conversion pathways to scale client revenue across competitive regional markets." data-es="Supervisó campañas de búsqueda, redes sociales y programática dirigida, optimizando modelos de atribución y rutas de conversión para escalar ingresos en mercados regionales competitivos." data-fr="Supervision des campagnes sur les moteurs de recherche, réseaux sociaux et programmatique, afin d'optimiser les modèles d'attribution et augmenter les revenus sur des marchés régionaux concurrentiels.">
+        Oversee search, social, and targeted programmatic campaigns, streamlining attribution models and optimizing conversion pathways to scale client revenue across competitive regional markets.
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -534,31 +693,31 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="sec-eyebrow">HOW AN ENGAGEMENT RUNS</div>
-        <h2>Four stages, one source of truth.</h2>
+        <div class="sec-eyebrow" data-en="HOW AN ENGAGEMENT RUNS" data-es="CÓMO FUNCIONA UN PROYECTO" data-fr="DÉROULEMENT D'UN PROJET">HOW AN ENGAGEMENT RUNS</div>
+        <h2 data-en="Four stages, one source of truth." data-es="Cuatro etapas, una sola fuente de verdad." data-fr="Quatre étapes, une source unique de vérité.">Four stages, one source of truth.</h2>
       </div>
-      <p class="sec-note">Every engagement follows the same pipeline &mdash; because media without an audit trail isn't measurable, it's a guess.</p>
+      <p class="sec-note" data-en="Every engagement follows the same pipeline &mdash; because media without an audit trail isn't measurable, it's a guess." data-es="Cada proyecto sigue la misma estructura: porque los medios sin seguimiento de auditoría no se pueden medir, solo se adivinan." data-fr="Chaque projet suit le même processus &mdash; car les médias sans piste d'audit ne sont pas mesurables, ce sont des devinettes.">Every engagement follows the same pipeline &mdash; because media without an audit trail isn't measurable, it's a guess.</p>
     </div>
 
     <div class="stage reveal">
       <div class="stage-num">01</div>
-      <div class="stage-name">Data Architecture</div>
-      <div class="stage-desc">ETL pipelines that merge HubSpot, GA4, and platform APIs (Meta, Google, TikTok, LinkedIn) into a single warehouse &mdash; so every downstream number traces back to one source.</div>
+      <div class="stage-name" data-en="Data Architecture" data-es="Arquitectura de Datos" data-fr="Architecture des Données">Data Architecture</div>
+      <div class="stage-desc" data-en="ETL pipelines that merge HubSpot, GA4, and platform APIs (Meta, Google, TikTok, LinkedIn) into a single warehouse &mdash; so every downstream number traces back to one source." data-es="Canalizaciones ETL que unifican HubSpot, GA4 y APIs (Meta, Google, TikTok, LinkedIn) en un solo almacén de datos." data-fr="Pipelines ETL unifiant HubSpot, GA4 et les API plateformes (Meta, Google, TikTok, LinkedIn) dans un entrepôt unique.">ETL pipelines that merge HubSpot, GA4, and platform APIs (Meta, Google, TikTok, LinkedIn) into a single warehouse &mdash; so every downstream number traces back to one source.</div>
     </div>
     <div class="stage reveal">
       <div class="stage-num">02</div>
-      <div class="stage-name">Attribution Modeling</div>
-      <div class="stage-desc">Custom multi-touch attribution built on top of that data, quantifying real incremental lift instead of last-click guesswork.</div>
+      <div class="stage-name" data-en="Attribution Modeling" data-es="Modelado de Atribución" data-fr="Modélisation d'Attribution">Attribution Modeling</div>
+      <div class="stage-desc" data-en="Custom multi-touch attribution built on top of that data, quantifying real incremental lift instead of last-click guesswork." data-es="Atribución multitoque personalizada desarrollada sobre los datos unificados, midiendo el impacto real en lugar de estimaciones." data-fr="Attribution multi-touch personnalisée basée sur ces données, quantifiant l'impact réel au lieu de simples estimations.">Custom multi-touch attribution built on top of that data, quantifying real incremental lift instead of last-click guesswork.</div>
     </div>
     <div class="stage reveal">
       <div class="stage-num">03</div>
-      <div class="stage-name">Media Execution</div>
-      <div class="stage-desc">Full-funnel buying and budget allocation across Search, Social, and programmatic DSPs, informed by the attribution model &mdash; not run separately from it.</div>
+      <div class="stage-name" data-en="Media Execution" data-es="Ejecución de Medios" data-fr="Exécution Médias">Media Execution</div>
+      <div class="stage-desc" data-en="Full-funnel buying and budget allocation across Search, Social, and programmatic DSPs, informed by the attribution model &mdash; not run separately from it." data-es="Compra de medios y asignación presupuestaria en Búsqueda, Redes y DSPs programáticos informados por el modelo de atribución." data-fr="Achat média et allocation budgétaire sur les moteurs de recherche, réseaux sociaux et DSPs basés sur le modèle d'attribution.">Full-funnel buying and budget allocation across Search, Social, and programmatic DSPs, informed by the attribution model &mdash; not run separately from it.</div>
     </div>
     <div class="stage reveal">
       <div class="stage-num">04</div>
-      <div class="stage-name">Reporting &amp; Dashboards</div>
-      <div class="stage-desc">Executive dashboards in Looker or Power BI tracking CPA, LTV, and MER in real time, cutting reporting cycles by up to 50%.</div>
+      <div class="stage-name" data-en="Reporting &amp; Dashboards" data-es="Informes y Paneles" data-fr="Rapports &amp; Tableaux de Bord">Reporting &amp; Dashboards</div>
+      <div class="stage-desc" data-en="Executive dashboards in Looker or Power BI tracking CPA, LTV, and MER in real time, cutting reporting cycles by up to 50%." data-es="Paneles ejecutivos en Looker o Power BI que rastrean CPA, LTV y MER en tiempo real, reduciendo ciclos de informes hasta un 50%." data-fr="Tableaux de bord exécutifs dans Looker ou Power BI suivant le CPA, la LTV et le MER en temps réel, réduisant les délais de 50%.">Executive dashboards in Looker or Power BI tracking CPA, LTV, and MER in real time, cutting reporting cycles by up to 50%.</div>
     </div>
   </div>
 </section>
@@ -567,10 +726,10 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="sec-eyebrow">SELECT EXPERIENCE</div>
-        <h2>Where this approach has run.</h2>
+        <div class="sec-eyebrow" data-en="SELECT EXPERIENCE" data-es="EXPERIENCIA DESTACADA" data-fr="EXPÉRIENCE SÉLECTIONNÉE">SELECT EXPERIENCE</div>
+        <h2 data-en="Where this approach has run." data-es="Dónde se ha aplicado este enfoque." data-fr="Où cette approche a été appliquée.">Where this approach has run.</h2>
       </div>
-      <p class="sec-note">Four years across agency and in-house seats, on budgets from $1M to $10M+ a month.</p>
+      <p class="sec-note" data-en="Four years across agency and in-house seats, on budgets from $1M to $10M+ a month." data-es="Años de experiencia en agencias y roles internos, gestionando presupuestos de $1M a más de $10M al mes." data-fr="Plusieurs années d'expérience en agence et en entreprise, gérant des budgets de 1M$ à plus de 10M$ par mois.">Four years across agency and in-house seats, on budgets from $1M to $10M+ a month.</p>
     </div>
 
     <div class="role reveal">
@@ -578,7 +737,7 @@
       <div>
         <div class="role-title">Senior Data Analyst</div>
         <div class="role-org">Dysrupt, New York, NY</div>
-        <div class="role-desc">Leading performance analytics for Meta Wearables (Ray-Ban, Oakley) and Paramount, scaling ROAS across $10M+ in monthly budgets and building the MTA models that unify Meta, Google, and TikTok data into one performance view.</div>
+        <div class="role-desc" data-en="Leading performance analytics for Meta Wearables (Ray-Ban, Oakley) and Paramount, scaling ROAS across $10M+ in monthly budgets and building the MTA models that unify Meta, Google, and TikTok data into one performance view." data-es="Liderando analítica de rendimiento para Meta Wearables (Ray-Ban, Oakley) y Paramount, escalando ROAS en presupuestos mensuales de $10M+ y creando modelos de atribución multitoque." data-fr="Direction des analyses de performance pour Meta Wearables (Ray-Ban, Oakley) et Paramount, optimisant le ROAS sur des budgets de 10M$+/mois.">Leading performance analytics for Meta Wearables (Ray-Ban, Oakley) and Paramount, scaling ROAS across $10M+ in monthly budgets and building the MTA models that unify Meta, Google, and TikTok data into one performance view.</div>
         <div class="role-tags"><span class="tag">MTA modeling</span><span class="tag">Looker</span><span class="tag">Power BI</span><span class="tag">$10M+/mo</span></div>
       </div>
     </div>
@@ -588,7 +747,7 @@
       <div>
         <div class="role-title">Media Analyst</div>
         <div class="role-org">Demand Drive, New York, NY</div>
-        <div class="role-desc">Optimized $1M+ in monthly ad spend across Google, Meta, LinkedIn, and programmatic DSPs &mdash; cutting CPL 15% and lifting ROAS 20% YoY, with unified ABM dashboards built on HubSpot and Syft data.</div>
+        <div class="role-desc" data-en="Optimized $1M+ in monthly ad spend across Google, Meta, LinkedIn, and programmatic DSPs &mdash; cutting CPL 15% and lifting ROAS 20% YoY, with unified ABM dashboards built on HubSpot and Syft data." data-es="Optimización de más de $1M en inversión mensual publicitaria en Google, Meta, LinkedIn y DSPs, reduciendo CPL un 15% y mejorando el ROAS un 20% interanual." data-fr="Optimisation de plus de 1M$ de dépenses publicitaires mensuelles sur Google, Meta, LinkedIn et DSPs, réduisant le CPL de 15% et augmentant le ROAS de 20%.">Optimized $1M+ in monthly ad spend across Google, Meta, LinkedIn, and programmatic DSPs &mdash; cutting CPL 15% and lifting ROAS 20% YoY, with unified ABM dashboards built on HubSpot and Syft data.</div>
         <div class="role-tags"><span class="tag">ABM dashboards</span><span class="tag">GA4</span><span class="tag">SQL pipelines</span></div>
       </div>
     </div>
@@ -598,7 +757,7 @@
       <div>
         <div class="role-title">Senior Associate, Media Services</div>
         <div class="role-org">New Engen Inc., Seattle, WA</div>
-        <div class="role-desc">Managed $5M in monthly budget across Meta, TikTok, Bing, and Google for DTC, subscription, and B2C brands, owning vendor relationships and account-level testing strategy.</div>
+        <div class="role-desc" data-en="Managed $5M in monthly budget across Meta, TikTok, Bing, and Google for DTC, subscription, and B2C brands, owning vendor relationships and account-level testing strategy." data-es="Gestión de $5M en presupuesto mensual en Meta, TikTok, Bing y Google para marcas DTC y de suscripción." data-fr="Gestion de 5M$ de budget mensuel sur Meta, TikTok, Bing et Google pour des marques DTC et d'abonnement.">Managed $5M in monthly budget across Meta, TikTok, Bing, and Google for DTC, subscription, and B2C brands, owning vendor relationships and account-level testing strategy.</div>
         <div class="role-tags"><span class="tag">$5M/mo</span><span class="tag">Full-funnel</span></div>
       </div>
     </div>
@@ -608,7 +767,7 @@
       <div>
         <div class="role-title">Marketing Analyst</div>
         <div class="role-org">Executive Insight Properties, Issaquah, WA</div>
-        <div class="role-desc">Ran market research and database management across consumers, retailers, and distributors, translating large-scale data into decision-ready reports.</div>
+        <div class="role-desc" data-en="Ran market research and database management across consumers, retailers, and distributors, translating large-scale data into decision-ready reports." data-es="Análisis de mercado y gestión de bases de datos para traducir grandes volúmenes de datos en informes ejecutivos." data-fr="Études de marché et gestion de bases de données pour traduire des données à grande échelle en rapports décisionnels.">Ran market research and database management across consumers, retailers, and distributors, translating large-scale data into decision-ready reports.</div>
         <div class="role-tags"><span class="tag">Market research</span></div>
       </div>
     </div>
@@ -619,26 +778,26 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="sec-eyebrow">CREDENTIALS</div>
-        <h2>The certifications behind the work.</h2>
+        <div class="sec-eyebrow" data-en="CREDENTIALS" data-es="CREDENCIALES" data-fr="CERTIFICATIONS">CREDENTIALS</div>
+        <h2 data-en="The certifications behind the work." data-es="Las certificaciones detrás del trabajo." data-fr="Les certifications derrière le travail.">The certifications behind the work.</h2>
       </div>
     </div>
 
     <div class="creds-grid reveal">
       <div class="cred">
-        <div class="cred-cat">DATA &amp; ANALYTICS</div>
+        <div class="cred-cat" data-en="DATA &amp; ANALYTICS" data-es="DATOS Y ANALÍTICA" data-fr="DONNÉES &amp; ANALYTIQUE">DATA &amp; ANALYTICS</div>
         <div class="cred-item">Google Analytics Certification (GA4)</div>
         <div class="cred-item">SQL Certification</div>
       </div>
       <div class="cred">
-        <div class="cred-cat">MEDIA &amp; SEARCH</div>
+        <div class="cred-cat" data-en="MEDIA &amp; SEARCH" data-es="MEDIOS Y BÚSQUEDA" data-fr="MÉDIAS &amp; RECHERCHE">MEDIA &amp; SEARCH</div>
         <div class="cred-item">Meta Certified Media Planning Professional</div>
         <div class="cred-item">Meta Certified Media Buying Professional</div>
         <div class="cred-item">Google Ads Search Certification</div>
         <div class="cred-item">Semrush SEO &amp; PPC Certifications</div>
       </div>
       <div class="cred">
-        <div class="cred-cat">STACK &amp; PARTNERS</div>
+        <div class="cred-cat" data-en="STACK &amp; PARTNERS" data-es="TECNOLOGÍA Y SOCIOS" data-fr="TECHNOLOGY &amp; PARTENAIRES">STACK &amp; PARTNERS</div>
         <div class="cred-item">SQL &middot; Looker &middot; Power BI &middot; Tableau</div>
         <div class="cred-item">Meta Ads &middot; TikTok Ads &middot; StackAdapt</div>
         <div class="cred-item" style="color:var(--signal); margin-top:6px; font-weight:500;">✓ Meta Business Partner &middot; Google Premier Partner</div>
@@ -651,22 +810,22 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <div class="sec-eyebrow">FREQUENTLY ASKED QUESTIONS</div>
-        <h2>Working with Schwartz Media.</h2>
+        <div class="sec-eyebrow" data-en="FREQUENTLY ASKED QUESTIONS" data-es="PREGUNTAS FRECUENTES" data-fr="FOIRE AUX QUESTIONS">FREQUENTLY ASKED QUESTIONS</div>
+        <h2 data-en="Working with Schwartz Media." data-es="Trabajar con Schwartz Media." data-fr="Travailler avec Schwartz Media.">Working with Schwartz Media.</h2>
       </div>
     </div>
     <div class="reveal">
       <div class="faq-item">
-        <div class="faq-q">What media budget sizes do you typically work with? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Engagements typically focus on brands spending between $50k/mo to $10M+/mo across digital channels where structured attribution and pipeline modeling yield high ROI.</div>
+        <div class="faq-q"><span data-en="What media budget sizes do you typically work with?" data-es="¿Con qué tamaños de presupuesto trabajan típicamente?" data-fr="Quels sont les budgets médias traités habituellement ?">What media budget sizes do you typically work with?</span> <span class="faq-icon">+</span></div>
+        <div class="faq-a" data-en="Engagements typically focus on brands spending between $50k/mo to $10M+/mo across digital channels where structured attribution and pipeline modeling yield high ROI." data-es="Los proyectos suelen centrarse en marcas que invierten entre $50k/mes y $10M+/mes en canales digitales." data-fr="Les projets s'adressent aux marques dépensant entre 50k$/mois et plus de 10M$/mois sur les canaux numériques.">Engagements typically focus on brands spending between $50k/mo to $10M+/mo across digital channels where structured attribution and pipeline modeling yield high ROI.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">How does project onboarding work? <span class="faq-icon">+</span></div>
-        <div class="faq-a">We begin with a 2-week data audit step (Phase 01) to verify pixel tracking, server-side events, and warehouse architecture before recommending media allocations.</div>
+        <div class="faq-q"><span data-en="How does project onboarding work?" data-es="¿Cómo funciona la incorporación de proyectos?" data-fr="Comment se déroule l'intégration d'un projet ?">How does project onboarding work?</span> <span class="faq-icon">+</span></div>
+        <div class="faq-a" data-en="We begin with a 2-week data audit step (Phase 01) to verify pixel tracking, server-side events, and warehouse architecture before recommending media allocations." data-es="Comenzamos con una auditoría de datos de 2 semanas (Fase 01) para verificar el seguimiento antes de recomendar asignaciones de medios." data-fr="Nous commençons par une phase d'audit des données de 2 semaines (Phase 01) pour vérifier le suivi avant de recommander les allocations.">We begin with a 2-week data audit step (Phase 01) to verify pixel tracking, server-side events, and warehouse architecture before recommending media allocations.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Do you manage creative production or just media data? <span class="faq-icon">+</span></div>
-        <div class="faq-a">Focus is centered on analytical strategy, ad operations, reporting pipelines, and attribution, working closely alongside your in-house or external creative teams.</div>
+        <div class="faq-q"><span data-en="Do you manage creative production or just media data?" data-es="¿Gestionan la producción creativa o solo datos?" data-fr="Gérez-vous la production créative ou uniquement les données ?">Do you manage creative production or just media data?</span> <span class="faq-icon">+</span></div>
+        <div class="faq-a" data-en="Focus is centered on analytical strategy, ad operations, reporting pipelines, and attribution, working closely alongside your in-house or external creative teams." data-es="El enfoque está centrado en la estrategia analítica, operaciones de anuncios, canalizaciones de informes y atribución." data-fr="L'accent est mis sur la stratégie analytique, les opérations publicitaires, les rapports et l'attribution.">Focus is centered on analytical strategy, ad operations, reporting pipelines, and attribution, working closely alongside your in-house or external creative teams.</div>
       </div>
     </div>
   </div>
@@ -675,10 +834,10 @@
 <section id="contact" class="contact">
   <div class="wrap contact-grid">
     <div class="reveal">
-      <div class="sec-eyebrow">GET IN TOUCH</div>
-      <h2>Bring the data question first.</h2>
-      <p class="contact-copy">Whether it's an attribution model that doesn't add up, a reporting stack that takes a week to close, or a media budget that needs a second set of eyes &mdash; start with what you're trying to measure.</p>
-      <button class="btn btn-primary open-modal-btn">Start a project</button>
+      <div class="sec-eyebrow" data-en="GET IN TOUCH" data-es="CONTACTAR" data-fr="CONTACTER">GET IN TOUCH</div>
+      <h2 data-en="Bring the data question first." data-es="Comience con la pregunta de datos." data-fr="Commencez par la question de données.">Bring the data question first.</h2>
+      <p class="contact-copy" data-en="Whether it's an attribution model that doesn't add up, a reporting stack that takes a week to close, or a media budget that needs a second set of eyes &mdash; start with what you're trying to measure." data-es="Ya sea un modelo de atribución que no cuadra o un informe que tarda semanas en cerrarse, comience con lo que intenta medir." data-fr="Qu'il s'agisse d'un modèle d'attribution inexact ou de rapports trop longs à produire, commencez par ce que vous cherchez à mesurer.">Whether it's an attribution model that doesn't add up, a reporting stack that takes a week to close, or a media budget that needs a second set of eyes &mdash; start with what you're trying to measure.</p>
+      <button class="btn btn-primary open-modal-btn" data-en="Start a project" data-es="Iniciar un proyecto" data-fr="Lancer un projet">Start a project</button>
     </div>
     <div class="reveal">
       <div class="contact-list">
@@ -686,7 +845,7 @@
         <div class="contact-row"><span>Phone</span><a href="tel:+12067907987">(206) 790-7987</a></div>
         <div class="contact-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/ethanjosephschwartz/" target="_blank" rel="noopener">/ethanjosephschwartz</a></div>
         <div class="contact-row">
-          <span>Based in</span>
+          <span data-en="Based in" data-es="Ubicación" data-fr="Basé à">Based in</span>
           <div class="edu-block">
             <b>Jersey City, NJ</b><br>
             <span style="color:var(--muted); font-size:0.8rem;">George Washington University — B.A. Marketing, Minor in History &middot; ESSEC Business School</span>
@@ -706,23 +865,23 @@
 <div class="modal-overlay" id="contactModal">
   <div class="modal-card">
     <button class="modal-close" id="closeModal">&times;</button>
-    <div class="card-tag" style="margin-bottom:8px;">Start A Project</div>
-    <div class="card-title" style="margin-bottom:16px;">Let's talk growth &amp; data architecture.</div>
+    <div class="card-tag" style="margin-bottom:8px;" data-en="Start A Project" data-es="Iniciar Un Proyecto" data-fr="Lancer Un Projet">Start A Project</div>
+    <div class="card-title" style="margin-bottom:16px;" data-en="Let's talk growth &amp; data architecture." data-es="Hablemos de crecimiento y arquitectura de datos." data-fr="Parlons croissance &amp; architecture de données.">Let's talk growth &amp; data architecture.</div>
     <form action="https://formspree.io/f/xbjnqpkp" method="POST" id="modalForm">
       <div class="form-group">
-        <label for="name">FULL NAME</label>
+        <label for="name" data-en="FULL NAME" data-es="NOMBRE COMPLETO" data-fr="NOM COMPLET">FULL NAME</label>
         <input type="text" id="name" name="name" required placeholder="Ethan Schwartz">
       </div>
       <div class="form-group">
-        <label for="email">WORK EMAIL</label>
+        <label for="email" data-en="WORK EMAIL" data-es="CORREO TRABAJO" data-fr="E-MAIL PROFESSIONNEL">WORK EMAIL</label>
         <input type="email" id="email" name="email" required placeholder="ethan@company.com">
       </div>
       <div class="form-group">
-        <label for="phone">PHONE NUMBER</label>
+        <label for="phone" data-en="PHONE NUMBER" data-es="TELÉFONO" data-fr="NUMÉRO DE TÉLÉPHONE">PHONE NUMBER</label>
         <input type="tel" id="phone" name="phone" required placeholder="(206) 790-7987">
       </div>
       <div class="form-group">
-        <label for="budget">MONTHLY AD SPEND</label>
+        <label for="budget" data-en="MONTHLY AD SPEND" data-es="INVERSIÓN MENSUAL" data-fr="DÉPENSES MENSUELLES">MONTHLY AD SPEND</label>
         <select id="budget" name="budget">
           <option value="under50k">&lt; $50k / month</option>
           <option value="50k-250k">$50k - $250k / month</option>
@@ -731,16 +890,26 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="message">PROJECT DETAILS / GOALS</label>
+        <label for="message" data-en="PROJECT DETAILS / GOALS" data-es="DETALLES / OBJETIVOS DEL PROYECTO" data-fr="DÉTAILS / OBJECTIFS DU PROJET">PROJECT DETAILS / GOALS</label>
         <textarea id="message" name="message" rows="3" placeholder="Tell us about your current tracking, media channels, or reporting challenges..."></textarea>
       </div>
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Submit Inquiry</button>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;" data-en="Submit Inquiry" data-es="Enviar Consulta" data-fr="Envoyer la Demande">Submit Inquiry</button>
     </form>
   </div>
 </div>
 
 <script>
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Language Switcher Logic
+  function setLanguage(lang) {
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
 
   // Count-up stats
   function animateCount(el){
@@ -783,6 +952,27 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+  // Interactive Client Detail Cards
+  const chips = document.querySelectorAll('.client-chip');
+  const cards = document.querySelectorAll('.client-detail-card');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const targetId = chip.getAttribute('data-target');
+      const targetCard = document.getElementById(targetId);
+
+      if (chip.classList.contains('active')) {
+        chip.classList.remove('active');
+        targetCard.classList.remove('active');
+      } else {
+        chips.forEach(c => c.classList.remove('active'));
+        cards.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        targetCard.classList.add('active');
+      }
+    });
+  });
 
   // FAQ Accordion
   document.querySelectorAll(".faq-q").forEach(q => {
