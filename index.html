@@ -19,14 +19,14 @@
 
     <style>
         :root {
-            --bg-dark: #0f1115;
-            --bg-card: #181b21;
-            --bg-card-hover: #21252d;
-            --accent: #22c55e;
-            --accent-hover: #16a34a;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #27272a;
+            --bg-light: #ffffff;
+            --bg-card: #f8fafc;
+            --bg-card-hover: #f1f5f9;
+            --accent: #16a34a;
+            --accent-hover: #15803d;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -37,7 +37,7 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-light);
             color: var(--text-main);
             font-family: var(--font-sans);
             line-height: 1.6;
@@ -60,7 +60,7 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: rgba(15, 17, 21, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             z-index: 100;
         }
@@ -76,6 +76,7 @@
             font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: -0.025em;
+            color: var(--text-main);
         }
 
         .brand-logo span {
@@ -137,7 +138,7 @@
 
         .btn-primary {
             background-color: var(--accent);
-            color: #000000;
+            color: #ffffff;
         }
 
         .btn-primary:hover {
@@ -152,7 +153,7 @@
 
         .btn-secondary:hover {
             border-color: var(--text-muted);
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: var(--bg-card);
         }
 
         /* Hero */
@@ -176,6 +177,7 @@
             letter-spacing: -0.03em;
             margin-bottom: 24px;
             font-weight: 800;
+            color: var(--text-main);
         }
 
         .hero p {
@@ -195,7 +197,7 @@
         .stats-bar {
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            background-color: rgba(24, 27, 33, 0.5);
+            background-color: var(--bg-card);
             padding: 36px 0;
             margin-bottom: 80px;
         }
@@ -240,6 +242,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 8px;
+            color: var(--text-main);
         }
 
         .section-subtitle {
@@ -271,6 +274,7 @@
             font-size: 1.2rem;
             margin-bottom: 10px;
             font-weight: 600;
+            color: var(--text-main);
         }
 
         .service-card p {
@@ -337,6 +341,7 @@
         .process-step h4 {
             font-size: 1.05rem;
             margin-bottom: 6px;
+            color: var(--text-main);
         }
 
         .process-step p {
@@ -357,6 +362,7 @@
         .cta-section h2 {
             font-size: 2rem;
             margin-bottom: 12px;
+            color: var(--text-main);
         }
 
         .cta-section p {
@@ -372,12 +378,96 @@
             padding: 32px 0;
             color: var(--text-muted);
             font-size: 0.85rem;
+            background-color: var(--bg-card);
         }
 
         .footer-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        /* Modal Pop-up Styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: #ffffff;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         @media (max-width: 900px) {
@@ -406,7 +496,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#results">Results</a></li>
                     <li><a href="#process">Process</a></li>
-                    <li><a href="#contact" class="btn btn-primary" style="padding: 8px 16px; color: #000;">Let's Talk →</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal()" class="btn btn-primary" style="padding: 8px 16px;">Let's Talk →</a></li>
                 </ul>
                 
                 <!-- Google Translate Dropdown Container -->
@@ -422,7 +512,7 @@
             <h1>Performance Marketing for<br>Brands Ready to Scale</h1>
             <p>Schwartz Media helps growing companies turn paid media, advanced analytics, SEO, and strategy into predictable, measurable business growth.</p>
             <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
+                <button onclick="openModal()" class="btn btn-primary">Book a Strategy Call</button>
                 <a href="#services" class="btn btn-secondary">Explore Services</a>
             </div>
         </div>
@@ -585,7 +675,7 @@
         <div class="cta-section">
             <h2>Ready to Build a Smarter Marketing Strategy?</h2>
             <p>Let's talk about what's working, what's not, and where your largest growth opportunities lie. No sales pitch—just a direct conversation about your goals.</p>
-            <a href="mailto:contact@schwartzmedia.co" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">Book a Free Growth Call →</a>
+            <button onclick="openModal()" class="btn btn-primary" style="padding: 14px 28px; font-size: 1rem;">Book a Free Growth Call →</button>
             <div style="margin-top: 16px; font-size: 0.85rem; color: var(--text-muted);">Or email directly: contact@schwartzmedia.co</div>
         </div>
     </section>
@@ -597,6 +687,59 @@
             <div>Performance Marketing & Growth Consulting</div>
         </div>
     </footer>
+
+    <!-- Contact Pop-up Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 class="modal-title">Book a Growth Strategy Call</h3>
+            <p class="modal-desc">Fill out the details below and we'll reach out directly to schedule your call.</p>
+            
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" required placeholder="jane@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="(555) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" rows="3" placeholder="Tell us a little about your business and marketing goals..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('contactModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside of the content box
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! Your request has been received. We will be in touch shortly.');
+            closeModal();
+        }
+    </script>
 
 </body>
 </html>
